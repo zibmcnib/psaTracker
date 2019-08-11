@@ -1,0 +1,77 @@
+body {
+  font-family: Consolas, monaco, monospace;
+}
+
+h2 {
+  text-align: center;
+}
+
+.system {
+  text-align: center;
+}
+
+.text {
+  padding: 2px;
+  margin: 2px;
+}
+
+.center {
+  display: inline-block;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.outerTable {
+  border: 1px solid white;
+  background-color: black;
+}
+
+.PSA {
+  width: 75px;
+  /* border-right: 1px solid black; */
+  /* border-left: 1px solid black; */
+  text-align: center;
+}
+
+.titles {
+  font-weight: bold;
+  display: table;
+  width: 1000px;
+  table-layout: fixed;
+}
+
+div.titles span {
+  display: table-cell;
+  text-align: center;
+}
+
+.failed {
+  background-color: red;
+  color: white;
+}
+
+.originalReplacement {
+  background-color: darkgreen;
+  color: white;
+}
+
+.originalRefurbishment {
+  background-color: white;
+}
+
+.replacementRefurbishment {
+  background-color: gray;
+  color: white;
+}
+
+.terroristWatch {
+  background-color: orange;
+  color: white;
+}
+
+.finalReplacement {
+  background-color: green;
+  color: white;
+}
