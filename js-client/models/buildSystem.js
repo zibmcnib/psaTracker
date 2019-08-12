@@ -1,54 +1,72 @@
 const locationData = require("./locationData");
-// const getPSA = require("./getPSA");
+const getPSA = require("./getPSA");
 
-const ATop = [1, 3, 5, 7, 9];
-const ABot = [2, 4, 6, 8, 10];
-// const BTop = [11, 81, null, 13];
-// const BBot = [12, null, null, 14];
-// const CTop = [15, 17, 19, 21];
-// const CBot = [16, 18, 20, 22];
+let getFieldData = async (unit, subGroups) => {
+  let promises = [];
+  for (let subGroup of subGroups) {
+    let DCID = getDCID(unit, subGroup);
+    promises.push(await getPSA(DCID));
+  }
 
-let unitize = (unit, sg) => {
-  let DCID = `${unit}${sg.location}`;
-  sg.location = DCID;
-  return sg;
+  return Promise.all(promises).then(fieldData => fieldData);
 };
 
-// let getFieldData = async psas => {
-
-// }
-
-let buildCabinets = unit => {
-  let A = { top: {}, bot: {} };
-
-  ATop.forEach(cabinet => {
-    A.top[cabinet] = { locationData: {}, fieldData: {} };
-
-    //apply specific location data to sg in cabinet
-    A.top[cabinet].locationData = unitize(unit, locationData[cabinet]);
-
-    //apply specific field data from database
-    // let DCID = A.top[cabinet].locationData.location;
-    // getPSA(DCID).then(psa => {
-    //   A.top[cabinet].fieldData = psa;
-    // });
-  });
-
-  ABot.forEach(cabinet => {
-    A.bot[cabinet] = { locationData: {}, fieldData: {} };
-
-    //apply specific location data to sg in cabinet
-    A.bot[cabinet].locationData = unitize(unit, locationData[cabinet]);
-
-    //apply specific field data from database
-    // let DCID = A.bot[cabinet].locationData.location;
-    // getPSA(DCID).then(psa => {
-    //   console.log(psa);
-    //   A.bot[cabinet].fieldData = psa;
-    // });
-  });
-
-  return A;
+let getLocationData = (unit, subGroups) => {
+  let locations = [];
+  for (let subGroup of subGroups) {
+    const DCID = getDCID(unit, subGroup);
+    let data = locationData[subGroup];
+    data.location = DCID;
+    locations.push(data);
+  }
+  return locations;
 };
 
-module.exports = buildCabinets;
+let getDCID = (unit, sg) => {
+  let location = locationData[sg].location;
+  return `${unit}${location}`;
+};
+
+let buildCabinet = async (unit, cabinet) => {
+  let top = [];
+  let bot = [];
+  switch (cabinet) {
+    case "A":
+      top = [1, 3, 5, 7, 9];
+      bot = [2, 4, 6, 8, 10];
+      break;
+    case "B":
+      top = [11, 81, "blank", 13];
+      bot = [12, "HBPSA", "HBCP", 14];
+      break;
+    case "C":
+      top = [15, 17, 19, 21];
+      bot = [16, 18, 20, 22];
+      break;
+  }
+
+  const fieldDataTop = await getFieldData(unit, top);
+  const locationDataTop = getLocationData(unit, top);
+  const fieldDataBot = await getFieldData(unit, bot);
+  const locationDataBot = getLocationData(unit, bot);
+
+  let builtCabinet = { top: {}, bot: {} };
+
+  top.forEach((sg, i) => {
+    builtCabinet.top[sg] = {
+      fieldData: fieldDataTop[i],
+      locationData: locationDataTop[i]
+    };
+  });
+
+  bot.forEach((sg, i) => {
+    builtCabinet.bot[sg] = {
+      fieldData: fieldDataBot[i],
+      locationData: locationDataBot[i]
+    };
+  });
+
+  return await builtCabinet;
+};
+
+module.exports = buildCabinet;
