@@ -22,8 +22,15 @@ const psaSchema = new mongoose.Schema({
 
 const PSAs = mongoose.model("PSAs", psaSchema, "psas");
 
-const findPSA = async location => {
+const find = async location => {
   return await PSAs.find({ location }).exec();
 };
 
-module.exports = findPSA;
+const getSpares = async () => {
+  return await PSAs.find({ spare: 1 }).exec();
+};
+
+module.exports = {
+  find,
+  getSpares
+};

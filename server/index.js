@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const findPSA = require("../database-mongo/models/psa");
+const PSA = require("../database-mongo/models/psa");
 const cors = require("cors");
 let app = express();
 
@@ -12,7 +12,7 @@ app.use(cors());
 
 app.get("/api/psas/:location", (req, res) => {
   const { location } = req.params;
-  findPSA(location)
+  PSA.find(location)
     .then(psa => {
       res.send(psa);
     })
@@ -22,8 +22,24 @@ app.get("/api/psas/:location", (req, res) => {
     });
 });
 
+app.get("/api/spares", (req, res) => {
+  PSA.getSpares()
+    .then(spares => {
+      res.send(spares);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
 app.get("/api/CEDMCSStatus", (req, res) => {
-  buildSite().then(data => res.send(data));
+  buildSite()
+    .then(data => res.send(data))
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
 });
 
 app.listen(3000, function() {
