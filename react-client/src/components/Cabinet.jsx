@@ -1,30 +1,41 @@
 import React from "react";
-import PSA from "./PSA.jsx";
+import locationData from "../../../js-client/models/locationData";
+import CabinetRow from "./CabinetRow.jsx";
 
-Cabinet.propTypes = {
-  topPSAs: React.propTypes.array.isRequired,
-  bottomPSAs: React.propTypes.array.isRequired
+// Cabinet.propTypes = {
+//   top: React.propTypes.object.isRequired,
+//   bot: React.propTypes.object.isRequired
+// };
+
+// Cabinet A
+// {top: {…}, bot: {…}}
+const Cabinet = props => {
+  let top = [];
+  let bot = [];
+  switch (props.cabinet.label) {
+    case "A":
+      top = locationData.ATop;
+      bot = locationData.ABot;
+      break;
+    case "B":
+      top = locationData.BTop;
+      bot = locationData.BBot;
+      break;
+    case "C":
+      top = locationData.CTop;
+      bot = locationData.CBot;
+      break;
+  }
+  return (
+    <div className="cabinet">
+      <table>
+        <tbody>
+          <CabinetRow row={props.cabinet.top} order={top} />
+          <CabinetRow row={props.cabinet.bot} order={bot}/>
+        </tbody>
+      </table>
+    </div>
+  );
 };
-
-const Cabinet = ({ topPSAs, bottomPSAs }) => (
-  <div className="cabinet">
-    <table>
-      <tr>
-        {topPSAs.map(psa => (
-          <td key={psa.id}>
-            <PSA psa={psa} />
-          </td>
-        ))}
-      </tr>
-      <tr>
-        {bottomPSAs.map(psa => (
-          <td key={psa.id}>
-            <PSA key={psa.id} psa={psa} />
-          </td>
-        ))}
-      </tr>
-    </table>
-  </div>
-);
 
 export default Cabinet;
