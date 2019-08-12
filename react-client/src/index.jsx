@@ -1,13 +1,12 @@
+// import PSA from "./components/PSA.jsx";
+// import CabinetRow from "./components/CabinetRow.jsx";
+// import Cabinet from "./components/Cabinet.jsx";
+// import System from "./components/System.jsx";
+// import testData from "./testData/testData.js";
 import React from "react";
 import ReactDOM from "react-dom";
 import buildSite from "../../js-client/models/buildSystem";
-
-import PSA from "./components/PSA.jsx";
-import CabinetRow from "./components/CabinetRow.jsx";
-import Cabinet from "./components/Cabinet.jsx";
-import System from "./components/System.jsx";
 import Site from "./components/Site.jsx";
-import testData from "./testData/testData.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,25 +23,14 @@ class App extends React.Component {
         isLoading: false
       });
     });
-
-    // this.setState({
-    //   testOrder: testData.testOrder,
-    //   testSite: testData.testSite,
-    //   testSystem: testData.testSystem,
-    //   testCabinet: testData.testCabinet,
-    //   testRow: testData.testRow,
-    //   testPSA: testData.testPSA,
-    //   isLoading: false
-    // });
   }
 
   render() {
-    console.log(this.state.site);
     return (
       <div>
         {this.state.isLoading && <div>Loading.</div>}
         {!this.state.isLoading && (
-          <div>
+          <div className="system">
             <h1>CEDMCS PSA Status</h1>
             <Site units={this.state.site} />
           </div>
@@ -50,66 +38,75 @@ class App extends React.Component {
       </div>
     );
   }
-
-  ///////////////test cabinet//////////////////////////////////////
-  // return (
-  //       <div>
-  //         {this.state.isLoading && <div>Loading.</div>}
-  //         {!this.state.isLoading && (
-  //           <div>
-  //             <table>
-  //               <tbody>
-  //                 <Cabinet cabinet={this.state.testCabinet} />
-  //               </tbody>
-  //             </table>
-  //           </div>
-  //         )}
-  //       </div>
-  //     );
-  ///////////////test psa//////////////////////////////////////
-  // return (
-  //   <div>
-  //     {this.state.isLoading && <div>Loading.</div>}
-  //     {!this.state.isLoading && (
-  //       <div>
-  //         <PSA psa={this.state.testPSA} />
-  //       </div>
-  //     )}
-  //   </div>
-  // );
-
-  //////////////test row/////////////////////////////////////
-  // return (
-  //   <div>
-  //     {this.state.isLoading && <div>Loading.</div>}
-  //     {!this.state.isLoading && (
-  //       <div>
-  //         <table>
-  //           <tbody>
-  //             <CabinetRow
-  //               order={this.state.testOrder}
-  //               row={this.state.testRow.top}
-  //             />
-  //           </tbody>
-  //         </table>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
-  //////////////////test system/////////////////////////////////
-  //       U1         U2         U3
-  // (3)[Array(3), Array(3), Array(3)]
-  //  return (
-  //     <div>
-  //     {this.state.isLoading && <div>Loading.</div>}
-  //     {!this.state.isLoading && (
-  //       <div>
-  //         <h1>CEDMCS PSA Status</h1>
-  //         <System cabinets={this.state.testSystem} />
-  //       </div>
-  //     )}
-  //   </div>
-  // );
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
+
+// this.setState({
+//   testOrder: testData.testOrder,
+//   testSite: testData.testSite,
+//   testSystem: testData.testSystem,
+//   testCabinet: testData.testCabinet,
+//   testRow: testData.testRow,
+//   testPSA: testData.testPSA,
+//   isLoading: false
+// });
+///////////////test cabinet//////////////////////////////////////
+// return (
+//       <div>
+//         {this.state.isLoading && <div>Loading.</div>}
+//         {!this.state.isLoading && (
+//           <div>
+//             <table>
+//               <tbody>
+//                 <Cabinet cabinet={this.state.testCabinet} />
+//               </tbody>
+//             </table>
+//           </div>
+//         )}
+//       </div>
+//     );
+///////////////test psa//////////////////////////////////////
+// return (
+//   <div>
+//     {this.state.isLoading && <div>Loading.</div>}
+//     {!this.state.isLoading && (
+//       <div>
+//         <PSA psa={this.state.testPSA} />
+//       </div>
+//     )}
+//   </div>
+// );
+
+//////////////test row/////////////////////////////////////
+// return (
+//   <div>
+//     {this.state.isLoading && <div>Loading.</div>}
+//     {!this.state.isLoading && (
+//       <div>
+//         <table>
+//           <tbody>
+//             <CabinetRow
+//               order={this.state.testOrder}
+//               row={this.state.testRow.top}
+//             />
+//           </tbody>
+//         </table>
+//       </div>
+//     )}
+//   </div>
+// );
+//////////////////test system/////////////////////////////////
+//       U1         U2         U3
+// (3)[Array(3), Array(3), Array(3)]
+//  return (
+//     <div>
+//     {this.state.isLoading && <div>Loading.</div>}
+//     {!this.state.isLoading && (
+//       <div>
+//         <h1>CEDMCS PSA Status</h1>
+//         <System cabinets={this.state.testSystem} />
+//       </div>
+//     )}
+//   </div>
+// );

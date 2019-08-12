@@ -27,13 +27,15 @@ const Cabinet = props => {
       break;
   }
   return (
-    <div className="cabinet">
-      <table>
-        <tbody>
-          <CabinetRow row={props.cabinet.top} order={top} />
-          <CabinetRow row={props.cabinet.bot} order={bot}/>
-        </tbody>
-      </table>
+    <div>
+      <div className={props.cabinet.label}>
+        <table>
+          <tbody>
+            <CabinetRow row={props.cabinet.top} order={top} />
+            <CabinetRow row={props.cabinet.bot} order={bot} />
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

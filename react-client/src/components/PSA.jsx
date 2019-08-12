@@ -8,21 +8,20 @@ import React from "react";
 // SG 1
 // {fieldData: {…}, locationData: {…}}
 const PSA = props => {
-  console.log(props, " propzies!");
   return (
     <div>
       {props.psa.fieldData !== undefined && (
         <div className="PSA" id={props.psa.locationData.location}>
-          <div className="subgroup">SG{props.sg}</div>
-          <div className="group">{props.psa.locationData.group}</div>
-          <div className="serial">{props.psa.fieldData.serial}</div>
+          <div className="text subgroup">SG{props.sg}</div>
+          <div className="text group">{props.psa.locationData.group}</div>
+          <div className="text serial">{props.psa.fieldData.serial}</div>
         </div>
       )}
       {props.psa.fieldData === undefined && (
         <div className="PSA">
-          <div className="subgroup" />
-          <div className="group" />
-          <div className="serial" />
+          <div className="text subgroup"> </div>
+          <div className="text group"> </div>
+          <div className="text serial"> </div>
         </div>
       )}
     </div>
@@ -30,3 +29,5 @@ const PSA = props => {
 };
 
 export default PSA;
+
+// failed, originalReplacement, originalRefurbishment, replacementRefurbishment, terroristWatch, finalReplacement

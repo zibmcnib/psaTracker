@@ -2,10 +2,8 @@ import React from "react";
 import System from "./System.jsx";
 
 // System.propTypes = {
-//   cabinets: React.propTypes.array.isRequired
+//   props.units[0]: React.propTypes.array.isRequired
 // };
-//        U1
-// (3)[{…}, {…}, {…}]
 
 const Site = props => {
   return (
