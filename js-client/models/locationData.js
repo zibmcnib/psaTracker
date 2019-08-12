@@ -136,5 +136,23 @@ module.exports = {
     group: "RG4",
     finger: 4,
     ceas: [86, 87, 88, 89]
+  },
+  "blank": {
+    location: "BLANK",
+    group: null,
+    finger: null,
+    ceas: null
+  },
+  "HBCP": {
+    location: "HBCP",
+    group: null,
+    finger: null,
+    ceas: null
+  },
+  "HBPSA": {
+    location: "HBPSA",
+    group: null,
+    finger: null,
+    ceas: null
   }
 };
