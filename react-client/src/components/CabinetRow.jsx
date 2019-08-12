@@ -4,9 +4,9 @@ import PSA from "./PSA.jsx";
 const CabinetRow = props => {
   return (
     <tr>
-      {props.order.map(sg => {
+      {props.order.map((sg, i) => {
         return (
-          <td key={sg.id}>
+          <td key={i}>
             <PSA psa={props.row[sg]} sg={sg} />
           </td>
         );

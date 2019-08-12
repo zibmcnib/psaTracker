@@ -1,12 +1,10 @@
-// import PSA from "./components/PSA.jsx";
-// import CabinetRow from "./components/CabinetRow.jsx";
-// import Cabinet from "./components/Cabinet.jsx";
-// import System from "./components/System.jsx";
-// import testData from "./testData/testData.js";
 import React from "react";
 import ReactDOM from "react-dom";
 import buildSite from "../../js-client/models/buildSystem";
+import getSpares from "../../js-client/models/getSpares";
+import SparesTable from "./components/SparesTable.jsx";
 import Site from "./components/Site.jsx";
+import Legend from "./components/Legend.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +15,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    getSpares().then(spareData => {
+      this.setState({
+        spares: spareData,
+        isLoading: true
+      });
+    });
     buildSite().then(siteData => {
       this.setState({
         site: siteData,
@@ -30,9 +34,15 @@ class App extends React.Component {
       <div>
         {this.state.isLoading && <div>Loading.</div>}
         {!this.state.isLoading && (
-          <div className="system">
-            <h1>CEDMCS PSA Status</h1>
-            <Site units={this.state.site} />
+          <div className="site">
+            <div className="center">
+              <h1>Palo Verde CEDMCS PSA Status</h1>
+              <Site units={this.state.site} />
+              <h3>Legend</h3>
+              <Legend />
+              <h3>Spare PSAs Ready For Install</h3>
+              <SparesTable spares={this.state.spares} />
+            </div>
           </div>
         )}
       </div>
@@ -41,72 +51,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
-
-// this.setState({
-//   testOrder: testData.testOrder,
-//   testSite: testData.testSite,
-//   testSystem: testData.testSystem,
-//   testCabinet: testData.testCabinet,
-//   testRow: testData.testRow,
-//   testPSA: testData.testPSA,
-//   isLoading: false
-// });
-///////////////test cabinet//////////////////////////////////////
-// return (
-//       <div>
-//         {this.state.isLoading && <div>Loading.</div>}
-//         {!this.state.isLoading && (
-//           <div>
-//             <table>
-//               <tbody>
-//                 <Cabinet cabinet={this.state.testCabinet} />
-//               </tbody>
-//             </table>
-//           </div>
-//         )}
-//       </div>
-//     );
-///////////////test psa//////////////////////////////////////
-// return (
-//   <div>
-//     {this.state.isLoading && <div>Loading.</div>}
-//     {!this.state.isLoading && (
-//       <div>
-//         <PSA psa={this.state.testPSA} />
-//       </div>
-//     )}
-//   </div>
-// );
-
-//////////////test row/////////////////////////////////////
-// return (
-//   <div>
-//     {this.state.isLoading && <div>Loading.</div>}
-//     {!this.state.isLoading && (
-//       <div>
-//         <table>
-//           <tbody>
-//             <CabinetRow
-//               order={this.state.testOrder}
-//               row={this.state.testRow.top}
-//             />
-//           </tbody>
-//         </table>
-//       </div>
-//     )}
-//   </div>
-// );
-//////////////////test system/////////////////////////////////
-//       U1         U2         U3
-// (3)[Array(3), Array(3), Array(3)]
-//  return (
-//     <div>
-//     {this.state.isLoading && <div>Loading.</div>}
-//     {!this.state.isLoading && (
-//       <div>
-//         <h1>CEDMCS PSA Status</h1>
-//         <System cabinets={this.state.testSystem} />
-//       </div>
-//     )}
-//   </div>
-// );
