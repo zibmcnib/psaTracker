@@ -3,6 +3,8 @@ mongoose.connect("mongodb://localhost/psaDb", {
   useMongoClient: true
 });
 
+mongoose.Promise = require("bluebird");
+
 const db = mongoose.connection;
 
 db.on("error", function() {
