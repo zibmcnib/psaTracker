@@ -1,10 +1,10 @@
 const axios = require("axios");
 
-module.exports = async location => {
-  await axios
+module.exports = location => {
+  return axios
     .get(`http://localhost:3000/api/psas/${location}`)
-    .then(psa => {
-      return psa.data[0];
+    .then(res => {
+      return res.data[0];
     })
-    .catch(e => console.error(e));
+    .catch(e => e);
 };
