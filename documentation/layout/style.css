@@ -7,24 +7,8 @@ li {
   margin-right: 41%;
 }
 
+h1,
 h2 {
-  text-align: center;
-}
-
-/*.C01A {
-  border-collapse: collapse;
-  background-color: aqua;
-}
-
-.C01B {
-  border-collapse: collapse;
-}
-
-.C01C {
-  border-collapse: collapse;
-}*/
-
-.site {
   text-align: center;
 }
 
@@ -39,6 +23,11 @@ h2 {
 
 .center {
   display: inline-block;
+}
+
+.legendText {
+  width: 150px;
+  text-align: center;
 }
 
 .PSA {
@@ -56,10 +45,6 @@ h2 {
 div.titles span {
   display: table-cell;
   text-align: center;
-}
-
-.legend {
-  padding: 100px;
 }
 
 .failed {
@@ -89,8 +74,4 @@ div.titles span {
 .finalReplacement {
   background-color: green;
   color: white;
-}
-
-.blank {
-  background-color: lightgray;
 }
