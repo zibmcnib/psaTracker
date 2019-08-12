@@ -6,5 +6,5 @@ module.exports = location => {
     .then(res => {
       return res.data[0];
     })
-    .catch(e => e);
+    .catch(e => console.error(e));
 };
