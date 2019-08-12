@@ -137,22 +137,28 @@ module.exports = {
     finger: 4,
     ceas: [86, 87, 88, 89]
   },
-  "blank": {
+  blank: {
     location: "BLANK",
     group: null,
     finger: null,
     ceas: null
   },
-  "HBCP": {
+  HBCP: {
     location: "HBCP",
     group: null,
     finger: null,
     ceas: null
   },
-  "HBPSA": {
+  HBPSA: {
     location: "HBPSA",
     group: null,
     finger: null,
     ceas: null
-  }
+  },
+  ATop: [1, 3, 5, 7, 9],
+  ABot: [2, 4, 6, 8, 10],
+  BTop: [11, 81, "blank", 13],
+  BBot: [12, "HBPSA", "HBCP", 14],
+  CTop: [15, 17, 19, 21],
+  CBot: [16, 18, 20, 22]
 };
