@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Spare from "./Spare.jsx";
 
-const SparesTable = props => {
+const SparesTable = ({ spares }) => {
   return (
     <div className="system">
       <div className="center">
@@ -12,8 +13,7 @@ const SparesTable = props => {
               <th>WPPS</th>
               <th>Breaker Replacement</th>
             </tr>
-
-            {props.spares.map(spare => {
+            {spares.map(spare => {
               return <Spare key={spare.serial} psa={spare} />;
             })}
           </tbody>
@@ -21,6 +21,10 @@ const SparesTable = props => {
       </div>
     </div>
   );
+};
+
+SparesTable.propTypes = {
+  spares: PropTypes.object
 };
 
 export default SparesTable;

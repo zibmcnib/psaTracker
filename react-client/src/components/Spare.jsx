@@ -1,13 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Spare = props => {
+const Spare = ({ psa }) => {
   return (
-    <tr key={props.psa.serial}>
-      <td>{props.psa.serial}</td>
-      <td>{props.psa.breakerRep}</td>
-      <td>{props.psa.wpps}</td>
+    <tr key={psa.serial}>
+      <td>{psa.serial}</td>
+      <td>{psa.breakerRep}</td>
+      <td>{psa.wpps}</td>
     </tr>
   );
+};
+
+Spare.propTypes = {
+  psa: PropTypes.object,
+  serial: PropTypes.string,
+  breakerRep: PropTypes.number,
+  wpps: PropTypes.number
 };
 
 export default Spare;

@@ -1,39 +1,17 @@
 import React from "react";
-import locationData from "../../../js-client/models/locationData";
+import PropTypes from "prop-types";
+import getRowOrder from "../../../js-client/models/getRowOrder";
 import CabinetRow from "./CabinetRow.jsx";
 
-const Cabinet = props => {
-  let top = [];
-  let bot = [];
-  switch (props.cabinet.label) {
-    case "A":
-      top = locationData.ATop;
-      bot = locationData.ABot;
-      break;
-    case "B":
-      top = locationData.BTop;
-      bot = locationData.BBot;
-      break;
-    case "C":
-      top = locationData.CTop;
-      bot = locationData.CBot;
-      break;
-  }
+const Cabinet = ({ cabinet, onClick }) => {
+  const rows = getRowOrder(cabinet.label);
   return (
     <div>
-      <div className={props.cabinet.label}>
+      <div className={cabinet.label}>
         <table>
           <tbody>
-            <CabinetRow
-              row={props.cabinet.top}
-              order={top}
-              onClick={props.onClick}
-            />
-            <CabinetRow
-              row={props.cabinet.bot}
-              order={bot}
-              onClick={props.onClick}
-            />
+            <CabinetRow row={cabinet.top} order={rows.top} onClick={onClick} />
+            <CabinetRow row={cabinet.bot} order={rows.bot} onClick={onClick} />
           </tbody>
         </table>
       </div>
@@ -41,9 +19,9 @@ const Cabinet = props => {
   );
 };
 
-// Cabinet.propTypes = {
-//   cabinet: React.propTypes.object,
-//   onClick: React.propTypes.function
-// };
+Cabinet.propTypes = {
+  cabinet: PropTypes.object,
+  onClick: PropTypes.function
+};
 
 export default Cabinet;

@@ -1,22 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Cabinet from "./Cabinet.jsx";
 
-const System = props => {
+const System = ({ unit, cabinets, onClick }) => {
   return (
     <div className="system">
       <div className="center">
-        <h2>Unit {props.unit}</h2>
+        <h2>Unit {unit}</h2>
         <div className="titles">
           <span>C01A</span>
           <span>C01B</span>
           <span>C01C</span>
         </div>
+        {/* cabinets,{" "} */}
         <table className="outerTable">
           <tbody>
+            {/* cabinets,{" "} */}
             <tr>
-              {props.cabinets.map((cabinet, i) => (
+              {cabinets.map((cabinet, i) => (
                 <td key={i}>
-                  <Cabinet cabinet={cabinet} onClick={props.onClick} />
+                  <Cabinet cabinet={cabinet} onClick={onClick} />
                 </td>
               ))}
             </tr>
@@ -27,10 +30,10 @@ const System = props => {
   );
 };
 
-// System.propTypes = {
-//   unit: React.propTypes.number,
-//   cabinets: React.propTypes.array,
-//   onClick: React.propTypes.function
-// };
+System.propTypes = {
+  unit: PropTypes.number,
+  cabinets: PropTypes.array,
+  onClick: PropTypes.function
+};
 
 export default System;

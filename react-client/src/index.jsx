@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import buildSite from "../../js-client/models/buildSystem";
 import getSpares from "../../js-client/models/getSpares";
 import SparesTable from "./components/SparesTable.jsx";
-import DetailView from "./components/DetailView.jsx";
+import DetailPage from "./components/DetailPage.jsx";
 import Site from "./components/Site.jsx";
 import Legend from "./components/Legend.jsx";
 
@@ -20,6 +20,7 @@ class App extends React.Component {
 
   onPSAClick(selectedPSA) {
     this.setState({ selectedPSA, detailView: true });
+    console.log(this.state.currentPSA);
   }
 
   onBackClick() {
@@ -47,7 +48,10 @@ class App extends React.Component {
         {this.state.isLoading && <div>Loading.</div>}
         {!this.state.isLoading && this.state.detailView && (
           <div>
-            <DetailView onClick={this.onBackClick} currentPSA={this.state.selectedPSA} />
+            <DetailPage
+              onClick={this.onBackClick}
+              currentPSA={this.state.selectedPSA}
+            />
           </div>
         )}
         {!this.state.isLoading && !this.state.detailView && (
@@ -55,7 +59,7 @@ class App extends React.Component {
             <div className="center">
               <h1>Palo Verde CEDMCS PSA Status</h1>
               <Site units={this.state.site} onClick={this.onPSAClick} />
-              <h3>Legend</h3>
+              <h3>PSA Security Advisory System</h3>
               <Legend />
               <h3>Spare PSAs Ready For Install</h3>
               <SparesTable spares={this.state.spares} />
