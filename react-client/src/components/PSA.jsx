@@ -1,15 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const PSA = props => {
-  const currentPsa = props.psa;
+const PSA = ({ psa, onClick }) => {
+  const currentPsa = psa;
   let status = "";
   let origin = "    ";
   let sg = "";
   if (currentPsa.fieldData !== undefined) {
-    if (props.sg === 81) {
+    if (sg === 81) {
       sg = "CEA1";
     } else {
-      sg = `SG${props.sg}`;
+      sg = `SG${sg}`;
     }
     if (currentPsa.fieldData.failed) {
       status = "failed";
@@ -52,7 +53,7 @@ const PSA = props => {
       {currentPsa.fieldData !== undefined && (
         <div
           className={`PSA ${status}`}
-          onClick={() => props.onClick(currentPsa)}
+          onClick={() => onClick(currentPsa)}
           id={currentPsa.locationData.location}
         >
           <div className="text subgroup">{sg}</div>
@@ -75,10 +76,10 @@ const PSA = props => {
   );
 };
 
-// PSA.propTypes = {
-//   // psa: React.propTypes.object,
-//   sg: React.propTypes.number,
-//   onClick: React.propTypes.function
-// };
+PSA.propTypes = {
+  psa: PropTypes.object,
+  sg: PropTypes.number,
+  onClick: PropTypes.function
+};
 
 export default PSA;

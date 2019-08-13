@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import PSA from "./PSA.jsx";
 
-const CabinetRow = props => {
+const CabinetRow = ({ order, row, onClick }) => {
   return (
     <tr>
-      {props.order.map((sg, i) => {
+      {order.map((sg, i) => {
         return (
           <td key={i}>
-            <PSA psa={props.row[sg]} sg={sg} onClick={props.onClick} />
+            <PSA psa={row[sg]} sg={sg} onClick={onClick} />
           </td>
         );
       })}
@@ -15,10 +16,10 @@ const CabinetRow = props => {
   );
 };
 
-// CabinetRow.propTypes = {
-//   order: React.propTypes.array,
-//   row: React.propTypes.object,
-//   onClick: React.propTypes.function
-// };
+CabinetRow.propTypes = {
+  order: PropTypes.array,
+  row: PropTypes.object,
+  onClick: PropTypes.function
+};
 
 export default CabinetRow;

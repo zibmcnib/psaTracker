@@ -55,7 +55,7 @@ class App extends React.Component {
             <div className="center">
               <h1>Palo Verde CEDMCS PSA Status</h1>
               <Site units={this.state.site} onClick={this.onPSAClick} />
-              <h3>Legend</h3>
+              <h3>PSA Security Advisory System</h3>
               <Legend />
               <h3>Spare PSAs Ready For Install</h3>
               <SparesTable spares={this.state.spares} />
