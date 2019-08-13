@@ -24,14 +24,9 @@ const Legend = props => {
           <tbody>
             <tr>
               {descriptions.map((description, i) => (
-                <td
-                  className="legendText"
-                  key={i}
-                  className={`${classNames[i]}`}
-                >
+                <td key={i} className={`legendText ${classNames[i]}`}>
                   {description}
                 </td>
-                // </div>
               ))}
             </tr>
           </tbody>
