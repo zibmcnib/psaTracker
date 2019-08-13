@@ -22,6 +22,17 @@ app.get("/api/psas/:location", (req, res) => {
     });
 });
 
+app.get("/api/broken", (req, res) => {
+  PSA.getBroken()
+    .then(broken => {
+      res.send(broken);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
 app.get("/api/spares", (req, res) => {
   PSA.getSpares()
     .then(spares => {
