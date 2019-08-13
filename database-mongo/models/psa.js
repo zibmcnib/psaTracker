@@ -30,7 +30,15 @@ const getSpares = async () => {
   return await PSAs.find({ spare: 1 }).exec();
 };
 
+const getBroken = async () => {
+  return await PSAs.find({ spare: 0 })
+    .where("location")
+    .in(["U1 Hot Shop", "U1 HOT SHOP", "WEC", "Simulator", "PVSER", "PVS"])
+    .exec();
+};
+
 module.exports = {
   find,
-  getSpares
+  getSpares,
+  getBroken
 };
