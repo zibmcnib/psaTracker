@@ -1,13 +1,17 @@
 import React from "react";
-
+import PropTypes from "prop-types";
+// import parsePSADetails from "../../../js-client/models/parsePSADetails";
+import findYx from "../../../js-client/models/findYx";
 const DetailPage = ({ currentPSA, onClick }) => {
-  console.log(currentPSA);
+  let Y = findYx(currentPSA);
   return (
     <div>
       <h1>Location: {currentPSA.fieldData.location}</h1>
       <h3>Serial: {currentPSA.fieldData.serial}</h3>
       {currentPSA.fieldData.coil.length > 1 && (
-        <div className="attention">{currentPSA.fieldData.coil} SCR</div>
+        <div className="attention">
+          {currentPSA.fieldData.coil} SCR on {Y["y"]}, CEA {Y["cea"]}
+        </div>
       )}
       {currentPSA.locationData.ceas[1] === null && <div>CEA: 1</div>}
       {currentPSA.locationData.ceas[1] !== null && (
@@ -29,8 +33,8 @@ const DetailPage = ({ currentPSA, onClick }) => {
 };
 
 DetailPage.propTypes = {
-  currentPSA: React.propTypes.object,
-  onClick: React.propTypes.function
+  currentPSA: PropTypes.object,
+  onClick: PropTypes.function
 };
 
 export default DetailPage;

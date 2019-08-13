@@ -13,7 +13,6 @@ const SparesTable = ({ spares }) => {
               <th>WPPS</th>
               <th>Breaker Replacement</th>
             </tr>
-
             {spares.map(spare => {
               return <Spare key={spare.serial} psa={spare} />;
             })}

@@ -12,10 +12,10 @@ const System = ({ unit, cabinets, onClick }) => {
           <span>C01B</span>
           <span>C01C</span>
         </div>
-        cabinets,{" "}
+        {/* cabinets,{" "} */}
         <table className="outerTable">
           <tbody>
-            cabinets,{" "}
+            {/* cabinets,{" "} */}
             <tr>
               {cabinets.map((cabinet, i) => (
                 <td key={i}>

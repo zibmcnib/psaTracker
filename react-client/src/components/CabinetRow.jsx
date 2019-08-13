@@ -5,10 +5,10 @@ import PSA from "./PSA.jsx";
 const CabinetRow = ({ order, row, onClick }) => {
   return (
     <tr>
-      {order.map((sg, i) => {
+      {order.map((subgroup, i) => {
         return (
           <td key={i}>
-            <PSA psa={row[sg]} sg={sg} onClick={onClick} />
+            <PSA psa={row[subgroup]} subgroup={subgroup} onClick={onClick} />
           </td>
         );
       })}

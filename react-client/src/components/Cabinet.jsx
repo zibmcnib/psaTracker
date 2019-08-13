@@ -1,32 +1,17 @@
 import React from "react";
-import locationData from "../../../js-client/models/locationData";
 import PropTypes from "prop-types";
+import getRowOrder from "../../../js-client/models/getRowOrder";
 import CabinetRow from "./CabinetRow.jsx";
 
 const Cabinet = ({ cabinet, onClick }) => {
-  let top = [];
-  let bot = [];
-  switch (cabinet.label) {
-    case "A":
-      top = locationData.ATop;
-      bot = locationData.ABot;
-      break;
-    case "B":
-      top = locationData.BTop;
-      bot = locationData.BBot;
-      break;
-    case "C":
-      top = locationData.CTop;
-      bot = locationData.CBot;
-      break;
-  }
+  const rows = getRowOrder(cabinet.label);
   return (
     <div>
       <div className={cabinet.label}>
         <table>
           <tbody>
-            <CabinetRow row={cabinet.top} order={top} onClick={onClick} />
-            <CabinetRow row={cabinet.bot} order={bot} onClick={onClick} />
+            <CabinetRow row={cabinet.top} order={rows.top} onClick={onClick} />
+            <CabinetRow row={cabinet.bot} order={rows.bot} onClick={onClick} />
           </tbody>
         </table>
       </div>
