@@ -8,15 +8,18 @@ const Site = props => {
 
   return (
     <div>
-      <System cabinets={u1} unit={1} />
-      <System cabinets={u2} unit={2} />
-      <System cabinets={u3} unit={3} />
+      <System cabinets={u1} unit={1} onClick={props.onClick} />
+      <System cabinets={u2} unit={2} onClick={props.onClick} />
+      <System cabinets={u3} unit={3} onClick={props.onClick} />
     </div>
   );
 };
 
 // Site.propTypes = {
-//   units: React.propTypes.array.isRequired
+//   // u1: React.propTypes.object,
+//   // u2: React.propTypes.object,
+//   // u3: React.propTypes.object,
+//   onClick: React.propTypes.function
 // };
 
 export default Site;

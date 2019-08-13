@@ -1,45 +1,46 @@
 import React from "react";
 
-// PSA.propTypes = {
-//   locationData: React.propTypes.object.isRequired,
-//   fieldData: React.propTypes.object.isRequired
-// };
-
 const PSA = props => {
-  const psa = props.psa;
+  const currentPsa = props.psa;
   let status = "";
   let origin = "    ";
   let sg = "";
-  if (psa.fieldData !== undefined) {
+  if (currentPsa.fieldData !== undefined) {
     if (props.sg === 81) {
       sg = "CEA1";
     } else {
       sg = `SG${props.sg}`;
     }
-    if (psa.fieldData.failed) {
+    if (currentPsa.fieldData.failed) {
       status = "failed";
-      if (psa.fieldData.wecRefurb === 1) {
+      if (currentPsa.fieldData.wecRefurb === 1) {
         origin = "WEC";
       } else {
         origin = "oh crap...";
       }
-    } else if (psa.fieldData.terrorist) {
+    } else if (currentPsa.fieldData.terrorist) {
       status = "terroristWatch";
-      if (psa.fieldData.wecRefurb) {
+      if (currentPsa.fieldData.wecRefurb) {
         origin = "WEC";
       } else {
         origin = "NO!";
       }
-    } else if (psa.fieldData.breakerRep && !psa.fieldData.wpps) {
+    } else if (currentPsa.fieldData.breakerRep && !currentPsa.fieldData.wpps) {
       status = "originalReplacement";
       origin = "OEM";
-    } else if (psa.fieldData.wpps) {
+    } else if (currentPsa.fieldData.wpps) {
       status = "finalReplacement";
       origin = "WPPS";
-    } else if (psa.fieldData.replaced && psa.fieldData.wecRefurb) {
+    } else if (
+      currentPsa.fieldData.replaced &&
+      currentPsa.fieldData.wecRefurb
+    ) {
       status = "replacementRefurbishment";
       origin = "WEC";
-    } else if (psa.fieldData.wecRefurb && !psa.fieldData.replaced) {
+    } else if (
+      currentPsa.fieldData.wecRefurb &&
+      !currentPsa.fieldData.replaced
+    ) {
       origin = "WEC";
       status = "originalRefurbishment";
     }
@@ -48,16 +49,20 @@ const PSA = props => {
   }
   return (
     <div>
-      {psa.fieldData !== undefined && (
-        <div className={`PSA ${status}`} id={psa.locationData.location}>
+      {currentPsa.fieldData !== undefined && (
+        <div
+          className={`PSA ${status}`}
+          onClick={() => props.onClick(currentPsa)}
+          id={currentPsa.locationData.location}
+        >
           <div className="text subgroup">{sg}</div>
-          <div className="text group">{psa.locationData.group}</div>
-          <div className="text serial">{psa.fieldData.serial}</div>
+          <div className="text group">{currentPsa.locationData.group}</div>
+          <div className="text serial">{currentPsa.fieldData.serial}</div>
           <div className="text origin">{origin}</div>
-          <div className="text fingers">{psa.locationData.finger}</div>
+          <div className="text fingers">{currentPsa.locationData.finger}</div>
         </div>
       )}
-      {psa.fieldData === undefined && (
+      {currentPsa.fieldData === undefined && (
         <div className={`PSA ${status}`}>
           <div className="text subgroup"> - </div>
           <div className="text group"> - </div>
@@ -69,5 +74,11 @@ const PSA = props => {
     </div>
   );
 };
+
+// PSA.propTypes = {
+//   // psa: React.propTypes.object,
+//   sg: React.propTypes.number,
+//   onClick: React.propTypes.function
+// };
 
 export default PSA;
