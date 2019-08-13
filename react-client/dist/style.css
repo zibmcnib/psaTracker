@@ -47,7 +47,7 @@ div.titles span {
 .attention {
   color: red;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 40px;
   animation: blinkingText 0.5s infinite;
 }
 @keyframes blinkingText {
@@ -68,6 +68,18 @@ div.titles span {
   }
 }
 
+h1.details {
+  font-size: 55px;
+}
+
+h3.details {
+  font-size: 45px;
+}
+
+.details {
+  font-size: 30px;
+}
+
 .backButton:hover {
   background-color: #ddd;
   color: black;
@@ -76,6 +88,22 @@ div.titles span {
 .backButton {
   background-color: #f1f1f1;
   color: black;
+  font-size: 55px;
+}
+
+.appButton:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.appButton {
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 55px;
+}
+
+.legend {
+  width: 1250px;
 }
 
 .legendText {
@@ -83,19 +111,24 @@ div.titles span {
   width: 200ps;
   text-align: center;
 }
-/* table#sparesTable tr:nth-child(even) {
+
+table.spares {
+  table-layout: fixed;
+  width: 700px;
+}
+table.spares tr:nth-child(even) {
   background-color: #eee;
 }
-table#sparesTable tr:nth-child(odd) {
+table.spares tr:nth-child(odd) {
   background-color: #fff;
 }
-table#sparesTable th {
+table.spares th {
   color: white;
   background-color: black;
-} */
-
-.legend {
-  padding: 100px;
+}
+table.spares tr:hover {
+  background-color: #ddd;
+  color: black;
 }
 
 .failed {
