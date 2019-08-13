@@ -57,6 +57,39 @@ div.titles span {
   display: table-cell;
   text-align: center;
 }
+.attention {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  animation: blinkingText 0.5s infinite;
+}
+@keyframes blinkingText {
+  0% {
+    color: red;
+  }
+  49% {
+    color: darkred;
+  }
+  50% {
+    color: transparent;
+  }
+  99% {
+    color: darkred;
+  }
+  100% {
+    color: red;
+  }
+}
+
+.backButton:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.backButton {
+  background-color: #f1f1f1;
+  color: black;
+}
 
 .legend {
   padding: 100px;
@@ -67,22 +100,22 @@ div.titles span {
   color: white;
 }
 
-.originalReplacement {
-  background-color: darkgreen;
+.terroristWatch {
+  background-color: darkorange;
   color: white;
 }
 
 .originalRefurbishment {
-  background-color: white;
+  background-color: yellow;
 }
 
 .replacementRefurbishment {
-  background-color: gray;
+  background-color: blue;
   color: white;
 }
 
-.terroristWatch {
-  background-color: orange;
+.originalReplacement {
+  background-color: darkgreen;
   color: white;
 }
 
