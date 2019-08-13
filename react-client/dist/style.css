@@ -11,19 +11,6 @@ h2 {
   text-align: center;
 }
 
-/*.C01A {
-  border-collapse: collapse;
-  background-color: aqua;
-}
-
-.C01B {
-  border-collapse: collapse;
-}
-
-.C01C {
-  border-collapse: collapse;
-}*/
-
 .site {
   text-align: center;
 }
@@ -90,6 +77,22 @@ div.titles span {
   background-color: #f1f1f1;
   color: black;
 }
+
+.legendText {
+  padding: 10px;
+  width: 200ps;
+  text-align: center;
+}
+/* table#sparesTable tr:nth-child(even) {
+  background-color: #eee;
+}
+table#sparesTable tr:nth-child(odd) {
+  background-color: #fff;
+}
+table#sparesTable th {
+  color: white;
+  background-color: black;
+} */
 
 .legend {
   padding: 100px;
