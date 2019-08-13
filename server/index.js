@@ -22,6 +22,30 @@ app.get("/api/psas/:location", (req, res) => {
     });
 });
 
+app.post("/api/makespare/:serial", (req, res) => {
+  const { serial } = req.params;
+  PSA.makeSpare(serial)
+    .then(psa => {
+      res.send(psa);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
+app.post("/api/makebroke/:serial", (req, res) => {
+  const { serial } = req.params;
+  PSA.makeBroke(serial)
+    .then(psa => {
+      res.send(psa);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
 app.get("/api/broken", (req, res) => {
   PSA.getBroken()
     .then(broken => {

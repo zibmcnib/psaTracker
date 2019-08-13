@@ -37,8 +37,23 @@ const getBroken = async () => {
     .exec();
 };
 
+// update the location fields on two psas
+// take sparePSA
+
+// const installSpareInUnit = async (location, destination) => {};
+
+const makeSpare = async serial => {
+  return await PSAs.updateOne({ serial }, { spare: 1 });
+};
+
+const makeBroke = async serial => {
+  return await PSAs.updateOne({ serial }, { spare: 0 });
+};
+
 module.exports = {
   find,
   getSpares,
-  getBroken
+  getBroken,
+  makeSpare,
+  makeBroke
 };
