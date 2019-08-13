@@ -2,13 +2,6 @@ import React from "react";
 import locationData from "../../../js-client/models/locationData";
 import CabinetRow from "./CabinetRow.jsx";
 
-// Cabinet.propTypes = {
-//   top: React.propTypes.object.isRequired,
-//   bot: React.propTypes.object.isRequired
-// };
-
-// Cabinet A
-// {top: {…}, bot: {…}}
 const Cabinet = props => {
   let top = [];
   let bot = [];
@@ -31,13 +24,26 @@ const Cabinet = props => {
       <div className={props.cabinet.label}>
         <table>
           <tbody>
-            <CabinetRow row={props.cabinet.top} order={top} />
-            <CabinetRow row={props.cabinet.bot} order={bot} />
+            <CabinetRow
+              row={props.cabinet.top}
+              order={top}
+              onClick={props.onClick}
+            />
+            <CabinetRow
+              row={props.cabinet.bot}
+              order={bot}
+              onClick={props.onClick}
+            />
           </tbody>
         </table>
       </div>
     </div>
   );
 };
+
+// Cabinet.propTypes = {
+//   cabinet: React.propTypes.object,
+//   onClick: React.propTypes.function
+// };
 
 export default Cabinet;

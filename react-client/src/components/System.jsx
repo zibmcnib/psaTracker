@@ -1,12 +1,6 @@
 import React from "react";
 import Cabinet from "./Cabinet.jsx";
 
-// System.propTypes = {
-//   cabinets: React.propTypes.array.isRequired
-// };
-//        U1
-// (3)[{…}, {…}, {…}]
-
 const System = props => {
   return (
     <div className="system">
@@ -22,7 +16,7 @@ const System = props => {
             <tr>
               {props.cabinets.map((cabinet, i) => (
                 <td key={i}>
-                  <Cabinet cabinet={cabinet} />
+                  <Cabinet cabinet={cabinet} onClick={props.onClick} />
                 </td>
               ))}
             </tr>
@@ -34,7 +28,9 @@ const System = props => {
 };
 
 // System.propTypes = {
-//   cabinets: React.propTypes.array.isRequired
+//   unit: React.propTypes.number,
+//   cabinets: React.propTypes.array,
+//   onClick: React.propTypes.function
 // };
 
 export default System;
