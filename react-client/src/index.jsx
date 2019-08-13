@@ -2,38 +2,52 @@ import React from "react";
 import ReactDOM from "react-dom";
 import buildSite from "../../js-client/models/buildSystem";
 import getSpares from "../../js-client/models/getSpares";
-import SparesTable from "./components/SparesTable.jsx";
-import DetailPage from "./components/DetailPage.jsx";
-import Site from "./components/Site.jsx";
-import Legend from "./components/Legend.jsx";
+import getBroken from "../../js-client/models/getBroken";
+import SpareStatus from "./components/Landing/SpareStatus.jsx";
+import SparePage from "./components/PSASparePage/SparePage.jsx";
+import DetailPage from "./components/PSADetailPage/DetailPage.jsx";
+import Site from "./components/Landing/Site.jsx";
+import Legend from "./components/Landing/Legend.jsx";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      detailView: false
+      detailView: false,
+      spareView: false,
+      brokenPSAs: []
     };
     this.onPSAClick = this.onPSAClick.bind(this);
     this.onBackClick = this.onBackClick.bind(this);
+    this.onSpareStatusClick = this.onSpareStatusClick.bind(this);
   }
 
   onPSAClick(selectedPSA) {
-    this.setState({ selectedPSA, detailView: true });
-    console.log(this.state.currentPSA);
+    this.setState({ selectedPSA, detailView: true, spareView: false });
   }
 
   onBackClick() {
-    this.setState({ detailView: false });
+    this.setState({ detailView: false, spareView: false });
+  }
+
+  onSpareStatusClick() {
+    this.setState({ detailView: false, spareView: true });
   }
 
   componentDidMount() {
     getSpares().then(spareData => {
       this.setState({
-        spares: spareData,
-        isLoading: true
+        spares: spareData
       });
     });
+
+    getBroken().then(brokenData => {
+      this.setState({
+        brokenPSAs: brokenData
+      });
+    });
+
     buildSite().then(siteData => {
       this.setState({
         site: siteData,
@@ -45,27 +59,42 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.isLoading && <div>Loading.</div>}
-        {!this.state.isLoading && this.state.detailView && (
-          <div>
-            <DetailPage
-              onClick={this.onBackClick}
-              currentPSA={this.state.selectedPSA}
-            />
-          </div>
-        )}
-        {!this.state.isLoading && !this.state.detailView && (
-          <div className="site">
-            <div className="center">
-              <h1>Palo Verde CEDMCS PSA Status</h1>
-              <Site units={this.state.site} onClick={this.onPSAClick} />
-              <h3>PSA Security Advisory System</h3>
-              <Legend />
-              <h3>Spare PSAs Ready For Install</h3>
-              <SparesTable spares={this.state.spares} />
+        {this.state.isLoading && <div>Loading...</div>}
+        {!this.state.isLoading &&
+          this.state.detailView &&
+          !this.state.spareView && (
+            <div>
+              <DetailPage
+                onClick={this.onBackClick}
+                currentPSA={this.state.selectedPSA}
+              />
             </div>
-          </div>
-        )}
+          )}
+        {!this.state.isLoading &&
+          !this.state.detailView &&
+          !this.state.spareView && (
+            <div className="site">
+              <div className="center">
+                <h1>Palo Verde CEDMCS PSA Status</h1>
+                <Site units={this.state.site} onClick={this.onPSAClick} />
+                <h3>PSA Security Advisory System</h3>
+                <Legend />
+                <SpareStatus
+                  spares={this.state.spares}
+                  onClick={this.onSpareStatusClick}
+                />
+              </div>
+            </div>
+          )}
+        {!this.state.isLoading &&
+          !this.state.detailView &&
+          this.state.spareView && (
+            <SparePage
+              spares={this.state.spares}
+              broken={this.state.brokenPSAs}
+              onClick={this.onBackClick}
+            />
+          )}
       </div>
     );
   }
