@@ -2,8 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import findYx from "../../../../js-client/models/findYx";
 import parsePSADetails from "../../../../js-client/models/parsePSADetails";
+import makeSpare from "../../../../js-client/models/makeSpare";
+import makeBroke from "../../../../js-client/models/makeBroke";
 
-const DetailPage = ({ currentPSA, onBackClick, onSpareStatusClick }) => {
+const DetailPage = ({
+  currentPSA,
+  onBackClick,
+  onSpareStatusClick,
+  refreshSpares
+}) => {
   if (currentPSA.fieldData !== undefined) {
     let Y = findYx(currentPSA);
     let parsedPSA = parsePSADetails(currentPSA);
@@ -57,6 +64,36 @@ const DetailPage = ({ currentPSA, onBackClick, onSpareStatusClick }) => {
           </div>
         )}
         <div className="details">Comments: {currentPSA.comments}</div>
+        {currentPSA.spare === 0 && (
+          <div
+            className="backButton details"
+            onClick={() => {
+              makeSpare(currentPSA.serial)
+                .then(() => {
+                  refreshSpares();
+                  onSpareStatusClick();
+                })
+                .catch(e => console.error(e));
+            }}
+          >
+            Spare {currentPSA.serial}
+          </div>
+        )}
+        {currentPSA.spare === 1 && (
+          <div
+            className="backButton details"
+            onClick={() => {
+              makeBroke(currentPSA.serial)
+                .then(() => {
+                  refreshSpares();
+                  onSpareStatusClick();
+                })
+                .catch(e => console.error(e));
+            }}
+          >
+            Remove {currentPSA.serial} from Spare Pool
+          </div>
+        )}
         <div
           className="backButton details"
           onClick={() => {
@@ -73,7 +110,8 @@ const DetailPage = ({ currentPSA, onBackClick, onSpareStatusClick }) => {
 DetailPage.propTypes = {
   currentPSA: PropTypes.object,
   onBackClick: PropTypes.function,
-  onSpareStatusClick: PropTypes.function
+  onSpareStatusClick: PropTypes.function,
+  refreshSpares: PropTypes.function
 };
 
 export default DetailPage;

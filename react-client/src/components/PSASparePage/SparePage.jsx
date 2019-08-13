@@ -2,13 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Spare from "./Spare.jsx";
 
-const SparesPage = ({
-  spares,
-  broken,
-  onBackClick,
-  onPSAClick
-  // onSpareStatusClick
-}) => {
+const SparesPage = ({ spares, broken, onBackClick, onPSAClick }) => {
   return (
     <div className="system">
       <div className="center">
@@ -24,7 +18,9 @@ const SparesPage = ({
               <th />
             </tr>
             {spares.map(spare => {
-              return <Spare key={spare.serial} psa={spare} />;
+              return (
+                <Spare key={spare.serial} psa={spare} onPSAClick={onPSAClick} />
+              );
             })}
           </tbody>
         </table>
@@ -64,7 +60,6 @@ SparesPage.propTypes = {
   broken: PropTypes.array,
   onBackClick: PropTypes.function,
   onPSAClick: PropTypes.function
-  // onSpareStatusClick: PropTypes.function
 };
 
 export default SparesPage;

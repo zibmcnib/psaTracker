@@ -21,6 +21,7 @@ class App extends React.Component {
     this.onPSAClick = this.onPSAClick.bind(this);
     this.onBackClick = this.onBackClick.bind(this);
     this.onSpareStatusClick = this.onSpareStatusClick.bind(this);
+    this.refreshSpares = this.refreshSpares.bind(this);
   }
 
   onPSAClick(selectedPSA) {
@@ -33,6 +34,20 @@ class App extends React.Component {
 
   onSpareStatusClick() {
     this.setState({ detailView: false, spareView: true });
+  }
+
+  refreshSpares() {
+    getSpares().then(spareData => {
+      this.setState({
+        spares: spareData
+      });
+    });
+
+    getBroken().then(brokenData => {
+      this.setState({
+        brokenPSAs: brokenData
+      });
+    });
   }
 
   componentDidMount() {
@@ -68,6 +83,7 @@ class App extends React.Component {
                 onBackClick={this.onBackClick}
                 currentPSA={this.state.selectedPSA}
                 onSpareStatusClick={this.onSpareStatusClick}
+                refreshSpares={this.refreshSpares}
               />
             </div>
           )}
