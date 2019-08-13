@@ -65,8 +65,9 @@ class App extends React.Component {
           !this.state.spareView && (
             <div>
               <DetailPage
-                onClick={this.onBackClick}
+                onBackClick={this.onBackClick}
                 currentPSA={this.state.selectedPSA}
+                onSpareStatusClick={this.onSpareStatusClick}
               />
             </div>
           )}
@@ -81,7 +82,7 @@ class App extends React.Component {
                 <Legend />
                 <SpareStatus
                   spares={this.state.spares}
-                  onClick={this.onSpareStatusClick}
+                  onSpareStatusClick={this.onSpareStatusClick}
                 />
               </div>
             </div>
@@ -92,7 +93,8 @@ class App extends React.Component {
             <SparePage
               spares={this.state.spares}
               broken={this.state.brokenPSAs}
-              onClick={this.onBackClick}
+              onBackClick={this.onBackClick}
+              onPSAClick={this.onPSAClick}
             />
           )}
       </div>

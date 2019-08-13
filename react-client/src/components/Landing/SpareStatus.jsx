@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SpareStatus = ({ spares, onClick }) => {
+const SpareStatus = ({ spares, onSpareStatusClick }) => {
   return (
     <div className="system">
       <div className="center">
-        <a onClick={() => onClick()}>
-          Spare PSAs Ready For Install: {spares.length}x
+        <a className="appButton" onClick={() => onSpareStatusClick()}>
+          PSAs Ready For Install: {spares.length}x
         </a>
       </div>
     </div>
@@ -15,7 +15,7 @@ const SpareStatus = ({ spares, onClick }) => {
 
 SpareStatus.propTypes = {
   spares: PropTypes.array,
-  onClick: PropTypes.function
+  onSpareStatusClick: PropTypes.function
 };
 
 export default SpareStatus;

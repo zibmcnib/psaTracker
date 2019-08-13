@@ -2,18 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import Spare from "./Spare.jsx";
 
-const SparesPage = ({ spares, broken, onClick }) => {
-  console.log(broken);
+const SparesPage = ({
+  spares,
+  broken,
+  onBackClick,
+  onPSAClick
+  // onSpareStatusClick
+}) => {
   return (
     <div className="system">
       <div className="center">
-        <h1>Spare PSAs</h1>
+        <h1>Spare PSAs Ready for Install</h1>
         <table className="spares">
           <tbody>
             <tr>
               <th>Serial</th>
-              <th>WPPS</th>
               <th>Breaker Replacement</th>
+              <th>WPPS</th>
+              <th>WEC</th>
+              <th />
+              <th />
             </tr>
             {spares.map(spare => {
               return <Spare key={spare.serial} psa={spare} />;
@@ -25,18 +33,23 @@ const SparesPage = ({ spares, broken, onClick }) => {
           <tbody>
             <tr>
               <th>Serial</th>
-              <th>WPPS</th>
               <th>Breaker Replacement</th>
+              <th>WPPS</th>
+              <th>WEC</th>
+              <th>Coil</th>
+              <th>Y-Group</th>
             </tr>
             {broken.map(broke => {
-              return <Spare key={broke.serial} psa={broke} />;
+              return (
+                <Spare key={broke.serial} psa={broke} onPSAClick={onPSAClick} />
+              );
             })}
           </tbody>
         </table>
         <div
           className="backButton"
           onClick={() => {
-            onClick();
+            onBackClick();
           }}
         >
           Go Back
@@ -49,7 +62,9 @@ const SparesPage = ({ spares, broken, onClick }) => {
 SparesPage.propTypes = {
   spares: PropTypes.array,
   broken: PropTypes.array,
-  onClick: PropTypes.function
+  onBackClick: PropTypes.function,
+  onPSAClick: PropTypes.function
+  // onSpareStatusClick: PropTypes.function
 };
 
 export default SparesPage;

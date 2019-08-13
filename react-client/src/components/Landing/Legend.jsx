@@ -29,9 +29,9 @@ const Legend = () => {
   return (
     <div className="system">
       <div className="center">
-        <table>
+        <table className="legend">
           <tbody>
-            <tr className="sparesTable">
+            <tr>
               {descriptions.map((description, i) => (
                 <td key={i} className={`legendText ${classNames[i]}`}>
                   {description}
