@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import findYx from "../../../../js-client/models/findYx";
 import parsePSADetails from "../../../../js-client/models/parsePSADetails";
 
-const PSAInUnitDetail = ({ currentPSA, onBackClick }) => {
+const InUnitDetail = ({ currentPSA, onBackClick }) => {
   let Y = findYx(currentPSA);
   let parsedPSA = parsePSADetails(currentPSA);
   return (
@@ -42,9 +42,9 @@ const PSAInUnitDetail = ({ currentPSA, onBackClick }) => {
   );
 };
 
-PSAInUnitDetail.propTypes = {
+InUnitDetail.propTypes = {
   currentPSA: PropTypes.object,
   onBackClick: PropTypes.function
 };
 
-export default PSAInUnitDetail;
+export default InUnitDetail;

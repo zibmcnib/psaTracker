@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PSAInUnitDetail from "./PSAInUnitDetail.jsx";
+import InUnitDetail from "./InUnitDetail.jsx";
 import SpareDetail from "./SpareDetail.jsx";
 
 const DetailPage = ({
@@ -10,9 +10,7 @@ const DetailPage = ({
   refreshSpares
 }) => {
   if (currentPSA.fieldData !== undefined) {
-    return (
-      <PSAInUnitDetail currentPSA={currentPSA} onBackClick={onBackClick} />
-    );
+    return <InUnitDetail currentPSA={currentPSA} onBackClick={onBackClick} />;
   } else {
     return (
       <SpareDetail
