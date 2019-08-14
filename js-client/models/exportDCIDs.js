@@ -1,4 +1,4 @@
-let DCIDS = [
+const DCIDs = [
   "JSFNC01A*SG1*IPWSUP",
   "JSFNC01A*SG10*IPWSUP",
   "JSFNC01A*SG2*IPWSUP",
@@ -24,10 +24,21 @@ let DCIDS = [
   "JSFNC01C*SG22*IPWSUP"
 ];
 
-let unitizeDCIDs = unit => {
-  return DCIDS.map(DCID => {
+const unitizeDCIDs = unit => {
+  return DCIDs.map(DCID => {
     return `${unit}${DCID}`;
   });
 };
 
-export default unitizeDCIDs;
+const allDCIDs = () => {
+  let DCID = [];
+  for (let i = 1; i <= 3; i++) {
+    DCID.push(unitizeDCIDs(i));
+  }
+  return DCID;
+};
+
+module.exports = {
+  unitizeDCIDs,
+  allDCIDs
+};
