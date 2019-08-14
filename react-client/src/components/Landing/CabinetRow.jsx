@@ -2,13 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import PSA from "./PSA.jsx";
 
-const CabinetRow = ({ order, row, onClick }) => {
+const CabinetRow = ({ order, row, onPSAClick, changeViewState }) => {
   return (
     <tr>
       {order.map((subgroup, i) => {
         return (
           <td key={i}>
-            <PSA psa={row[subgroup]} subgroup={subgroup} onClick={onClick} />
+            <PSA
+              psa={row[subgroup]}
+              subgroup={subgroup}
+              onPSAClick={onPSAClick}
+              changeViewState={changeViewState}
+            />
           </td>
         );
       })}
@@ -19,7 +24,8 @@ const CabinetRow = ({ order, row, onClick }) => {
 CabinetRow.propTypes = {
   order: PropTypes.array,
   row: PropTypes.object,
-  onClick: PropTypes.function
+  onPSAClick: PropTypes.function,
+  changeViewState: PropTypes.function
 };
 
 export default CabinetRow;

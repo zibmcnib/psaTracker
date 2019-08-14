@@ -3,15 +3,25 @@ import PropTypes from "prop-types";
 import getRowOrder from "../../../../js-client/models/getRowOrder";
 import CabinetRow from "./CabinetRow.jsx";
 
-const Cabinet = ({ cabinet, onClick }) => {
+const Cabinet = ({ cabinet, onPSAClick, changeViewState }) => {
   const rows = getRowOrder(cabinet.label);
   return (
     <div>
       <div className={cabinet.label}>
         <table>
           <tbody>
-            <CabinetRow row={cabinet.top} order={rows.top} onClick={onClick} />
-            <CabinetRow row={cabinet.bot} order={rows.bot} onClick={onClick} />
+            <CabinetRow
+              row={cabinet.top}
+              order={rows.top}
+              onPSAClick={onPSAClick}
+              changeViewState={changeViewState}
+            />
+            <CabinetRow
+              row={cabinet.bot}
+              order={rows.bot}
+              onPSAClick={onPSAClick}
+              changeViewState={changeViewState}
+            />
           </tbody>
         </table>
       </div>
@@ -21,7 +31,8 @@ const Cabinet = ({ cabinet, onClick }) => {
 
 Cabinet.propTypes = {
   cabinet: PropTypes.object,
-  onClick: PropTypes.function
+  onPSAClick: PropTypes.function,
+  changeViewState: PropTypes.function
 };
 
 export default Cabinet;

@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import findYx from "../../../../js-client/models/findYx";
 import parsePSADetails from "../../../../js-client/models/parsePSADetails";
+import states from "../states";
 
-const InUnitDetail = ({ currentPSA, onBackClick }) => {
+const InUnitDetail = ({ currentPSA, changeViewState }) => {
   let Y = findYx(currentPSA);
   let parsedPSA = parsePSADetails(currentPSA);
   return (
@@ -33,7 +34,15 @@ const InUnitDetail = ({ currentPSA, onBackClick }) => {
       <div
         className="backButton details"
         onClick={() => {
-          onBackClick();
+          changeViewState(states.swapPSAInitialView);
+        }}
+      >
+        Swap PSA with Spare
+      </div>
+      <div
+        className="backButton details"
+        onClick={() => {
+          changeViewState(states.landing);
         }}
       >
         Go Back
@@ -44,7 +53,7 @@ const InUnitDetail = ({ currentPSA, onBackClick }) => {
 
 InUnitDetail.propTypes = {
   currentPSA: PropTypes.object,
-  onBackClick: PropTypes.function
+  changeViewState: PropTypes.function
 };
 
 export default InUnitDetail;

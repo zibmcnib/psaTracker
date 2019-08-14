@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import makeSpare from "../../../../js-client/models/makeSpare";
 import makeBroke from "../../../../js-client/models/makeBroke";
+import states from "../states";
 
-const SpareDetail = ({ currentPSA, refreshSpares, onSpareStatusClick }) => {
+const SpareDetail = ({ currentPSA, refreshSpares, changeViewState }) => {
   console.log(currentPSA);
   let y = ["y1", "y2", "y3", "y4"]
     .filter(y => currentPSA[y])
@@ -26,7 +27,7 @@ const SpareDetail = ({ currentPSA, refreshSpares, onSpareStatusClick }) => {
             makeSpare(currentPSA.serial)
               .then(() => {
                 refreshSpares();
-                onSpareStatusClick();
+                changeViewState(states.spareView);
               })
               .catch(e => console.error(e));
           }}
@@ -41,7 +42,7 @@ const SpareDetail = ({ currentPSA, refreshSpares, onSpareStatusClick }) => {
             makeBroke(currentPSA.serial)
               .then(() => {
                 refreshSpares();
-                onSpareStatusClick();
+                changeViewState(states.spareView);
               })
               .catch(e => console.error(e));
           }}
@@ -52,7 +53,7 @@ const SpareDetail = ({ currentPSA, refreshSpares, onSpareStatusClick }) => {
       <div
         className="backButton details"
         onClick={() => {
-          onSpareStatusClick();
+          changeViewState(states.spareView);
         }}
       >
         Go Back
@@ -63,8 +64,7 @@ const SpareDetail = ({ currentPSA, refreshSpares, onSpareStatusClick }) => {
 
 SpareDetail.propTypes = {
   currentPSA: PropTypes.object,
-  onBackClick: PropTypes.function,
-  onSpareStatusClick: PropTypes.function,
+  changeViewState: PropTypes.function,
   refreshSpares: PropTypes.function
 };
 

@@ -4,13 +4,20 @@ import InUnitDetail from "./InUnitDetail.jsx";
 import SpareDetail from "./SpareDetail.jsx";
 
 const DetailPage = ({
+  spares,
   currentPSA,
-  onBackClick,
+  refreshSpares,
   onSpareStatusClick,
-  refreshSpares
+  changeViewState
 }) => {
   if (currentPSA.fieldData !== undefined) {
-    return <InUnitDetail currentPSA={currentPSA} onBackClick={onBackClick} />;
+    return (
+      <InUnitDetail
+        spares={spares}
+        currentPSA={currentPSA}
+        changeViewState={changeViewState}
+      />
+    );
   } else {
     return (
       <SpareDetail

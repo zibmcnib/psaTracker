@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Spare from "./Spare.jsx";
+import states from "../states";
 
-const SparesPage = ({ spares, broken, onBackClick, onPSAClick }) => {
+const SparesPage = ({ spares, broken, changeViewState, onPSAClick }) => {
   return (
     <div className="system">
       <div className="center">
@@ -19,7 +20,12 @@ const SparesPage = ({ spares, broken, onBackClick, onPSAClick }) => {
             </tr>
             {spares.map(spare => {
               return (
-                <Spare key={spare.serial} psa={spare} onPSAClick={onPSAClick} />
+                <Spare
+                  key={spare.serial}
+                  psa={spare}
+                  onPSAClick={onPSAClick}
+                  changeViewState={changeViewState}
+                />
               );
             })}
           </tbody>
@@ -37,7 +43,12 @@ const SparesPage = ({ spares, broken, onBackClick, onPSAClick }) => {
             </tr>
             {broken.map(broke => {
               return (
-                <Spare key={broke.serial} psa={broke} onPSAClick={onPSAClick} />
+                <Spare
+                  key={broke.serial}
+                  psa={broke}
+                  onPSAClick={onPSAClick}
+                  changeViewState={changeViewState}
+                />
               );
             })}
           </tbody>
@@ -45,7 +56,7 @@ const SparesPage = ({ spares, broken, onBackClick, onPSAClick }) => {
         <div
           className="backButton"
           onClick={() => {
-            onBackClick();
+            changeViewState(states.landing);
           }}
         >
           Go Back
@@ -58,7 +69,7 @@ const SparesPage = ({ spares, broken, onBackClick, onPSAClick }) => {
 SparesPage.propTypes = {
   spares: PropTypes.array,
   broken: PropTypes.array,
-  onBackClick: PropTypes.function,
+  changeViewState: PropTypes.function,
   onPSAClick: PropTypes.function
 };
 
