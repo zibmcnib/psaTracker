@@ -17,6 +17,7 @@ class App extends React.Component {
     super(props);
     this.state = states.isLoading;
     this.onPSAClick = this.onPSAClick.bind(this);
+    this.onSparePSAClick = this.onSparePSAClick.bind(this);
     this.changeViewState = this.changeViewState.bind(this);
     this.refreshSpares = this.refreshSpares.bind(this);
   }
@@ -29,6 +30,10 @@ class App extends React.Component {
   //MODEL///
   onPSAClick(selectedPSA) {
     this.setState({ selectedPSA });
+  }
+
+  onSparePSAClick(selectedSparePSA) {
+    this.setState({ selectedSparePSA });
   }
 
   refreshSpares() {
@@ -118,7 +123,7 @@ class App extends React.Component {
           <PSASwapInitial
             spares={this.state.spares}
             changeViewState={this.changeViewState}
-            onPSAClick={this.onPSAClick}
+            onSparePSAClick={this.onSparePSAClick}
           />
         )}
         {/* PSA SWAP CONFIRMATION PAGE */}
@@ -127,7 +132,8 @@ class App extends React.Component {
             spares={this.state.spares}
             broken={this.state.brokenPSAs}
             changeViewState={this.changeViewState}
-            onPSAClick={this.onPSAClick}
+            state={this.state}
+            // onPSAClick={this.onPSAClick}
           />
         )}
       </div>
