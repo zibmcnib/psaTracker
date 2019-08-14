@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Spare from "../PSASparePage/Spare.jsx";
 import states from "../states";
 
-const PSASwapInitial = ({ changeViewState, spares, onPSAClick }) => {
+const PSASwapInitial = ({ changeViewState, spares, onSparePSAClick }) => {
   return (
     <div className="backdrop">
       <div className="modal">
@@ -23,8 +23,10 @@ const PSASwapInitial = ({ changeViewState, spares, onPSAClick }) => {
                 <Spare
                   key={spare.serial}
                   psa={spare}
-                  onPSAClick={onPSAClick}
-                  changeViewState={() => changeViewState(states.swapPSAConfirmView)}
+                  onPSAClick={onSparePSAClick}
+                  changeViewState={() =>
+                    changeViewState(states.swapPSAConfirmView)
+                  }
                 />
               );
             })}
@@ -39,7 +41,7 @@ const PSASwapInitial = ({ changeViewState, spares, onPSAClick }) => {
 };
 
 PSASwapInitial.propTypes = {
-  onPSAClick: PropTypes.function,
+  onSparePSAClick: PropTypes.function,
   changeViewState: PropTypes.function,
   spares: PropTypes.array
 };
