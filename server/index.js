@@ -22,12 +22,22 @@ app.get("/api/psas/:location", (req, res) => {
     });
 });
 
+app.post("/api/swappsa", (req, res) => {
+  const { serialOfGood, locationOfBad } = req.body;
+  PSA.installSpareInUnit(serialOfGood, locationOfBad)
+    .then(res => {
+      res.send(res);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
 app.post("/api/makespare/:serial", (req, res) => {
   const { serial } = req.params;
   PSA.makeSpare(serial)
-    .then(psa => {
-      res.send(psa);
-    })
+    .then(res.sendStatus(202))
     .catch(e => {
       console.error(e);
       res.sendStatus(500);
@@ -37,9 +47,7 @@ app.post("/api/makespare/:serial", (req, res) => {
 app.post("/api/makebroke/:serial", (req, res) => {
   const { serial } = req.params;
   PSA.makeBroke(serial)
-    .then(psa => {
-      res.send(psa);
-    })
+    .then(res.sendStatus(202))
     .catch(e => {
       console.error(e);
       res.sendStatus(500);
