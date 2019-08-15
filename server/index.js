@@ -10,6 +10,17 @@ app.use(express.static(__dirname + "/../react-client/dist"));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/api/DCIDs", (req, res) => {
+  PSA.getInstalled()
+    .then(DCIDs => {
+      res.send(DCIDs);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
 app.get("/api/psas/:location", (req, res) => {
   const { location } = req.params;
   PSA.find(location)
@@ -25,8 +36,8 @@ app.get("/api/psas/:location", (req, res) => {
 app.post("/api/swappsa", (req, res) => {
   const { serialOfGood, locationOfBad } = req.body;
   PSA.installSpareInUnit(serialOfGood, locationOfBad)
-    .then(res => {
-      res.send(res);
+    .then(response => {
+      res.send(response);
     })
     .catch(e => {
       console.error(e);
