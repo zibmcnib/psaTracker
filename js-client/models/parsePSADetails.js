@@ -1,4 +1,4 @@
-let parsePSADetails = (psa, subgroup) => {
+let parsePSADetails = psa => {
   let parsedPSA = {
     status: "",
     location: "",
@@ -9,11 +9,11 @@ let parsePSADetails = (psa, subgroup) => {
     fingers: ""
   };
 
-  if (psa.fieldData !== undefined) {
-    if (subgroup === 81) {
+  if (psa !== undefined) {
+    if (psa.locationData.subgroup === 81) {
       parsedPSA.subgroup = "CEA1";
     } else {
-      parsedPSA.subgroup = `SG${subgroup}`;
+      parsedPSA.subgroup = `SG${psa.locationData.subgroup}`;
     }
     if (psa.fieldData.failed) {
       parsedPSA.status = "failed";
