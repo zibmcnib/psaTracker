@@ -24,7 +24,7 @@ const SparesPage = ({ spares, broken, changeViewState, onPSAClick }) => {
                   key={spare.serial}
                   psa={spare}
                   onPSAClick={onPSAClick}
-                  changeViewState={changeViewState}
+                  changeViewState={() => changeViewState(states.detailView)}
                 />
               );
             })}
@@ -47,7 +47,7 @@ const SparesPage = ({ spares, broken, changeViewState, onPSAClick }) => {
                   key={broke.serial}
                   psa={broke}
                   onPSAClick={onPSAClick}
-                  changeViewState={changeViewState}
+                  changeViewState={() => changeViewState(states.detailView)}
                 />
               );
             })}

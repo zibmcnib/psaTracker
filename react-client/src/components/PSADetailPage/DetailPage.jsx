@@ -7,7 +7,6 @@ const DetailPage = ({
   spares,
   currentPSA,
   refreshSpares,
-  onSpareStatusClick,
   changeViewState
 }) => {
   if (currentPSA.fieldData !== undefined) {
@@ -22,8 +21,8 @@ const DetailPage = ({
     return (
       <SpareDetail
         currentPSA={currentPSA}
-        onSpareStatusClick={onSpareStatusClick}
         refreshSpares={refreshSpares}
+        changeViewState={changeViewState}
       />
     );
   }

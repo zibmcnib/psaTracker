@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import parsePSADetails from "../../../../js-client/models/parsePSADetails";
 import states from "../states";
 
-const PSA = ({ psa, onPSAClick, changeViewState, subgroup }) => {
-  const currentPSA = parsePSADetails(psa, subgroup);
+const PSA = ({ psa, onPSAClick, changeViewState }) => {
+  const currentPSA = parsePSADetails(psa);
   return (
     <div>
       <div

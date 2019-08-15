@@ -2,15 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import PSA from "./PSA.jsx";
 
-const CabinetRow = ({ order, row, onPSAClick, changeViewState }) => {
+const CabinetRow = ({ unit, order, row, onPSAClick, changeViewState }) => {
   return (
     <tr>
-      {order.map((subgroup, i) => {
+      {order.map((DCID, i) => {
         return (
           <td key={i}>
             <PSA
-              psa={row[subgroup]}
-              subgroup={subgroup}
+              psa={row[`${unit}${DCID}`]}
               onPSAClick={onPSAClick}
               changeViewState={changeViewState}
             />

@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import buildSite from "../../js-client/models/buildSystem";
+import { buildSite } from "../../js-client/models/buildSystem";
 import getSpares from "../../js-client/models/getSpares";
 import getBroken from "../../js-client/models/getBroken";
+import swapPSA from "../../js-client/models/swapPSA";
 import SpareStatus from "./components/Landing/SpareStatus.jsx";
 import SparePage from "./components/PSASparePage/SparePage.jsx";
 import DetailPage from "./components/PSADetailPage/DetailPage.jsx";
@@ -20,6 +21,7 @@ class App extends React.Component {
     this.onSparePSAClick = this.onSparePSAClick.bind(this);
     this.changeViewState = this.changeViewState.bind(this);
     this.refreshSpares = this.refreshSpares.bind(this);
+    this.handlePSASwap = this.handlePSASwap.bind(this);
   }
 
   //CONTROLLER
@@ -48,6 +50,18 @@ class App extends React.Component {
         brokenPSAs: brokenData
       });
     });
+  }
+
+  async handlePSASwap(PSAsToSwap) {
+    swapPSA(PSAsToSwap);
+    await this.refreshSpares();
+    let site = await buildSite();
+    this.setState(
+      {
+        site
+      },
+      this.changeViewState(states.landing)
+    );
   }
 
   componentDidMount() {
@@ -129,11 +143,10 @@ class App extends React.Component {
         {/* PSA SWAP CONFIRMATION PAGE */}
         {this.state.swapPSAConfirmView && (
           <PSASwapConfirm
-            spares={this.state.spares}
-            broken={this.state.brokenPSAs}
+            selectedPSA={this.state.selectedPSA}
+            selectedSparePSA={this.state.selectedSparePSA}
+            handlePSASwap={this.handlePSASwap}
             changeViewState={this.changeViewState}
-            state={this.state}
-            // onPSAClick={this.onPSAClick}
           />
         )}
       </div>

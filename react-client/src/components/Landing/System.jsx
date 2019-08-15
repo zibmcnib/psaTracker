@@ -18,6 +18,7 @@ const System = ({ unit, cabinets, onPSAClick, changeViewState }) => {
               {cabinets.map((cabinet, i) => (
                 <td key={i}>
                   <Cabinet
+                    unit={unit}
                     cabinet={cabinet}
                     onPSAClick={onPSAClick}
                     changeViewState={changeViewState}

@@ -5,7 +5,6 @@ import makeBroke from "../../../../js-client/models/makeBroke";
 import states from "../states";
 
 const SpareDetail = ({ currentPSA, refreshSpares, changeViewState }) => {
-  console.log(currentPSA);
   let y = ["y1", "y2", "y3", "y4"]
     .filter(y => currentPSA[y])
     .join(",")
@@ -23,28 +22,22 @@ const SpareDetail = ({ currentPSA, refreshSpares, changeViewState }) => {
       {currentPSA.spare === 0 && (
         <div
           className="backButton details"
-          onClick={() => {
-            makeSpare(currentPSA.serial)
-              .then(() => {
-                refreshSpares();
-                changeViewState(states.spareView);
-              })
-              .catch(e => console.error(e));
+          onClick={async () => {
+            await makeSpare(currentPSA.serial);
+            await refreshSpares();
+            changeViewState(states.spareView);
           }}
         >
-          Spare {currentPSA.serial}
+          Add {currentPSA.serial} to Spare Pool
         </div>
       )}
       {currentPSA.spare === 1 && (
         <div
           className="backButton details"
-          onClick={() => {
-            makeBroke(currentPSA.serial)
-              .then(() => {
-                refreshSpares();
-                changeViewState(states.spareView);
-              })
-              .catch(e => console.error(e));
+          onClick={async () => {
+            await makeBroke(currentPSA.serial);
+            await refreshSpares();
+            changeViewState(states.spareView);
           }}
         >
           Remove {currentPSA.serial} from Spare Pool
