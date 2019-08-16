@@ -131,14 +131,8 @@ table.spares tr:hover {
   color: black;
 }
 
-.failed {
-  background-color: red;
-  color: white;
-}
-
-.terroristWatch {
-  background-color: darkorange;
-  color: white;
+.blank {
+  background-color: lightgray;
 }
 
 .originalRefurbishment {
@@ -160,6 +154,12 @@ table.spares tr:hover {
   color: white;
 }
 
-.blank {
-  background-color: lightgray;
+.terroristWatch {
+  background-color: darkorange;
+  color: white;
+}
+
+.failed {
+  background-color: red;
+  color: white;
 }
