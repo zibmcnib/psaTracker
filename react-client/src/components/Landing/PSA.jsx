@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import parsePSADetails from "../../../../js-client/models/parsePSADetails";
-import states from "../states";
+import { detailView } from "../states";
 
 const PSA = ({ psa, onPSAClick, changeViewState }) => {
   const currentPSA = parsePSADetails(psa);
@@ -11,7 +11,7 @@ const PSA = ({ psa, onPSAClick, changeViewState }) => {
         className={`PSA ${currentPSA.status}`}
         onClick={() => {
           onPSAClick(psa);
-          changeViewState(states.detailView);
+          changeViewState(detailView);
         }}
         id={currentPSA.location}
       >
