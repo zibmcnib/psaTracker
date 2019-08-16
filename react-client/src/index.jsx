@@ -29,7 +29,7 @@ class App extends React.Component {
     this.setState(state);
   }
 
-  //MODEL///
+  //MODEL
   onPSAClick(selectedPSA) {
     this.setState({ selectedPSA });
   }
@@ -52,43 +52,33 @@ class App extends React.Component {
     });
   }
 
+  async refreshEverything() {
+    try {
+      let { landing } = states;
+      const [spares, broken, site] = await Promise.all([
+        getSpares(),
+        getBroken(),
+        buildSite()
+      ]);
+      this.setState({ spares, broken, site, landing });
+    } catch (e) {
+      // make error state
+      console.error(e);
+    }
+  }
+
   async handlePSASwap(PSAsToSwap) {
-    swapPSA(PSAsToSwap);
-    await this.refreshSpares();
-    let site = await buildSite();
-    this.setState(
-      {
-        site
-      },
-      this.changeViewState(states.landing)
-    );
+    await swapPSA(PSAsToSwap);
+    this.refreshEverything();
   }
 
   componentDidMount() {
-    this.setState(states.loading);
-
-    getSpares().then(spareData => {
-      this.setState({
-        spares: spareData
-      });
-    });
-
-    getBroken().then(brokenData => {
-      this.setState({
-        brokenPSAs: brokenData
-      });
-    });
-
-    buildSite()
-      .then(siteData => {
-        this.setState({
-          site: siteData
-        });
-      })
-      .finally(this.setState(states.landing));
+    const { loading } = states;
+    this.setState(loading, this.refreshEverything);
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         {/* PSA DETAIL PAGE */}
