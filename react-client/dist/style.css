@@ -11,19 +11,6 @@ h2 {
   text-align: center;
 }
 
-/*.C01A {
-  border-collapse: collapse;
-  background-color: aqua;
-}
-
-.C01B {
-  border-collapse: collapse;
-}
-
-.C01C {
-  border-collapse: collapse;
-}*/
-
 .site {
   text-align: center;
 }
@@ -57,13 +44,103 @@ div.titles span {
   display: table-cell;
   text-align: center;
 }
-
-.legend {
-  padding: 100px;
+.attention {
+  color: red;
+  font-weight: bold;
+  font-size: 40px;
+  animation: blinkingText 0.5s infinite;
+}
+@keyframes blinkingText {
+  0% {
+    color: red;
+  }
+  49% {
+    color: darkred;
+  }
+  50% {
+    color: transparent;
+  }
+  99% {
+    color: darkred;
+  }
+  100% {
+    color: red;
+  }
 }
 
-.failed {
-  background-color: red;
+h1.details {
+  font-size: 55px;
+}
+
+h3.details {
+  font-size: 45px;
+}
+
+.details {
+  font-size: 30px;
+}
+
+.backButton:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.backButton {
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 55px;
+}
+
+.appButton:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.appButton {
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 55px;
+}
+
+.legend {
+  width: 1250px;
+}
+
+.legendText {
+  padding: 10px;
+  width: 200ps;
+  text-align: center;
+}
+
+table.spares {
+  table-layout: fixed;
+  width: 700px;
+}
+table.spares tr:nth-child(even) {
+  background-color: #eee;
+}
+table.spares tr:nth-child(odd) {
+  background-color: #fff;
+}
+table.spares th {
+  color: white;
+  background-color: black;
+}
+table.spares tr:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.blank {
+  background-color: lightgray;
+}
+
+.originalRefurbishment {
+  background-color: yellow;
+}
+
+.replacementRefurbishment {
+  background-color: blue;
   color: white;
 }
 
@@ -72,25 +149,17 @@ div.titles span {
   color: white;
 }
 
-.originalRefurbishment {
-  background-color: white;
-}
-
-.replacementRefurbishment {
-  background-color: gray;
-  color: white;
-}
-
-.terroristWatch {
-  background-color: orange;
-  color: white;
-}
-
 .finalReplacement {
   background-color: green;
   color: white;
 }
 
-.blank {
-  background-color: lightgray;
+.terroristWatch {
+  background-color: darkorange;
+  color: white;
+}
+
+.failed {
+  background-color: red;
+  color: white;
 }

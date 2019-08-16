@@ -1,32 +1,38 @@
-const locationData = require("./locationData");
-const getPSA = require("./getPSA");
+// const locationData = require("./locationData");
+// const getPSA = require("./getPSA");
+const getFieldDCIDs = require("./getFieldDCIDs");
+const locationDataByDCID = require("./locationDataByDCID");
 
-let getFieldData = async (unit, subGroups) => {
-  let promises = [];
-  for (let subGroup of subGroups) {
-    let DCID = getDCID(unit, subGroup);
-    promises.push(await getPSA(DCID));
+let newGetFieldData = async (unit, DCIDs) => {
+  let psas = [];
+  for (let DCID of DCIDs) {
+    let unitizedDCID = unitizeDCID(unit, DCID);
+    let fieldPSAs = await getFieldDCIDs().then(res => {
+      return res;
+    });
+    psas.push(
+      fieldPSAs.filter(psa => {
+        return psa.location === unitizedDCID;
+      })[0]
+    );
   }
-
-  return Promise.all(promises)
-    .then(fieldData => fieldData)
-    .catch(e => console.error(e));
+  return psas;
 };
 
-let getLocationData = (unit, subGroups) => {
+let newGetLocationData = (unit, DCIDs) => {
   let locations = [];
-  for (let subGroup of subGroups) {
-    const DCID = getDCID(unit, subGroup);
-    let data = locationData[subGroup];
-    data.location = DCID;
-    locations.push(data);
+  for (let DCID of DCIDs) {
+    locations.push(locationDataByDCID.locationDCIDS[DCID]);
   }
   return locations;
 };
 
-let getDCID = (unit, sg) => {
-  let location = locationData[sg].location;
-  return `${unit}${location}`;
+let unitizeDCID = (unit, DCID) => {
+  if (DCID === "HBPSA" || DCID === "blank" || DCID === "HBCP") {
+    return DCID;
+  } else {
+    return `${unit}${DCID}`;
+  }
 };
 
 let buildCabinet = async (unit, cabinet) => {
@@ -34,36 +40,38 @@ let buildCabinet = async (unit, cabinet) => {
   let bot = [];
   switch (cabinet) {
     case "A":
-      top = locationData.ATop;
-      bot = locationData.ABot;
+      top = locationDataByDCID.ATop;
+      bot = locationDataByDCID.ABot;
       break;
     case "B":
-      top = locationData.BTop;
-      bot = locationData.BBot;
+      top = locationDataByDCID.BTop;
+      bot = locationDataByDCID.BBot;
       break;
     case "C":
-      top = locationData.CTop;
-      bot = locationData.CBot;
+      top = locationDataByDCID.CTop;
+      bot = locationDataByDCID.CBot;
       break;
   }
 
-  const fieldDataTop = await getFieldData(unit, top);
-  const fieldDataBot = await getFieldData(unit, bot);
-  const locationDataTop = getLocationData(unit, top);
-  const locationDataBot = getLocationData(unit, bot);
+  const fieldDataTop = await newGetFieldData(unit, top);
+  const fieldDataBot = await newGetFieldData(unit, bot);
+  const locationDataTop = newGetLocationData(unit, top);
+  const locationDataBot = newGetLocationData(unit, bot);
 
   let builtCabinet = {};
   builtCabinet = { label: cabinet, top: {}, bot: {} };
 
-  top.forEach((sg, i) => {
-    builtCabinet.top[sg] = {
+  top.forEach((DCID, i) => {
+    let unitizedDCID = unitizeDCID(unit, DCID);
+    builtCabinet.top[unitizedDCID] = {
       fieldData: fieldDataTop[i],
       locationData: locationDataTop[i]
     };
   });
 
-  bot.forEach((sg, i) => {
-    builtCabinet.bot[sg] = {
+  bot.forEach((DCID, i) => {
+    let unitizedDCID = unitizeDCID(unit, DCID);
+    builtCabinet.bot[unitizedDCID] = {
       fieldData: fieldDataBot[i],
       locationData: locationDataBot[i]
     };
@@ -92,4 +100,11 @@ let buildSite = async () => {
     .catch(e => console.error(e));
 };
 
-module.exports = buildSite;
+module.exports = {
+  buildSite,
+  buildSystem,
+  buildCabinet,
+  newGetLocationData,
+  newGetFieldData,
+  unitizeDCID
+};
