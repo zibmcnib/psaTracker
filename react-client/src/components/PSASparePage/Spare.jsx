@@ -16,9 +16,9 @@ const Spare = ({ psa, onPSAClick, changeViewState }) => {
       }}
     >
       <td>{psa.serial}</td>
-      <td>{psa.breakerRep === 1 && "X"}</td>
-      <td>{psa.wpps === 1 && "X"}</td>
-      <td>{psa.wecRefurb === 1 && "X"}</td>
+      <td>{psa.breakerRep == 1 && "X"}</td>
+      <td>{psa.wpps == 1 && "X"}</td>
+      <td>{psa.wecRefurb == 1 && "X"}</td>
       <td>{psa.coil.length > 1 && `${psa.coil}`}</td>
       <td>{y.length > 0 && `${y}`}</td>
     </tr>

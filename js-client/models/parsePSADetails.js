@@ -17,7 +17,7 @@ let parsePSADetails = psa => {
     }
     if (psa.fieldData.failed) {
       parsedPSA.status = "failed";
-      if (psa.fieldData.wecRefurb === 1) {
+      if (psa.fieldData.wecRefurb) {
         parsedPSA.origin = "WEC";
       } else {
         parsedPSA.origin = "oh crap...";

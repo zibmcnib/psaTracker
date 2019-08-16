@@ -19,7 +19,7 @@ const SpareDetail = ({ currentPSA, refreshSpares, changeViewState }) => {
         </div>
       )}
       <div className="details">Comments: {currentPSA.comments}</div>
-      {currentPSA.spare === 0 && (
+      {currentPSA.spare == 0 && (
         <div
           className="backButton details"
           onClick={async () => {
@@ -31,7 +31,7 @@ const SpareDetail = ({ currentPSA, refreshSpares, changeViewState }) => {
           Add {currentPSA.serial} to Spare Pool
         </div>
       )}
-      {currentPSA.spare === 1 && (
+      {currentPSA.spare == 1 && (
         <div
           className="backButton details"
           onClick={async () => {
