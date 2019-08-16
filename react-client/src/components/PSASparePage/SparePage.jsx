@@ -69,8 +69,8 @@ const SparesPage = ({ spares, broken, changeViewState, onPSAClick }) => {
 SparesPage.propTypes = {
   spares: PropTypes.array,
   broken: PropTypes.array,
-  changeViewState: PropTypes.function,
-  onPSAClick: PropTypes.function
+  changeViewState: PropTypes.func,
+  onPSAClick: PropTypes.func
 };
 
 export default SparesPage;

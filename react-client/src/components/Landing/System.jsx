@@ -36,8 +36,8 @@ const System = ({ unit, cabinets, onPSAClick, changeViewState }) => {
 System.propTypes = {
   unit: PropTypes.number,
   cabinets: PropTypes.array,
-  onPSAClick: PropTypes.function,
-  changeViewState: PropTypes.function
+  onPSAClick: PropTypes.func,
+  changeViewState: PropTypes.func
 };
 
 export default System;

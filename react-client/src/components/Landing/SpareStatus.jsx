@@ -19,7 +19,7 @@ const SpareStatus = ({ spares, changeViewState }) => {
 
 SpareStatus.propTypes = {
   spares: PropTypes.array,
-  changeViewState: PropTypes.function
+  changeViewState: PropTypes.func
 };
 
 export default SpareStatus;

@@ -53,7 +53,7 @@ const InUnitDetail = ({ currentPSA, changeViewState }) => {
 
 InUnitDetail.propTypes = {
   currentPSA: PropTypes.object,
-  changeViewState: PropTypes.function
+  changeViewState: PropTypes.func
 };
 
 export default InUnitDetail;

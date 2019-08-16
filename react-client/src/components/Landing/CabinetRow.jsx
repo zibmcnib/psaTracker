@@ -23,8 +23,9 @@ const CabinetRow = ({ unit, order, row, onPSAClick, changeViewState }) => {
 CabinetRow.propTypes = {
   order: PropTypes.array,
   row: PropTypes.object,
-  onPSAClick: PropTypes.function,
-  changeViewState: PropTypes.function
+  onPSAClick: PropTypes.func,
+  changeViewState: PropTypes.func,
+  unit: PropTypes.number
 };
 
 export default CabinetRow;

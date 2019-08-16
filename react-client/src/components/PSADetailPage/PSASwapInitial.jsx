@@ -41,8 +41,8 @@ const PSASwapInitial = ({ changeViewState, spares, onSparePSAClick }) => {
 };
 
 PSASwapInitial.propTypes = {
-  onSparePSAClick: PropTypes.function,
-  changeViewState: PropTypes.function,
+  onSparePSAClick: PropTypes.func,
+  changeViewState: PropTypes.func,
   spares: PropTypes.array
 };
 

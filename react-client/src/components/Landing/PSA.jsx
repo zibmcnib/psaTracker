@@ -28,8 +28,8 @@ const PSA = ({ psa, onPSAClick, changeViewState }) => {
 PSA.propTypes = {
   psa: PropTypes.object,
   subgroup: PropTypes.number,
-  onPSAClick: PropTypes.function,
-  changeViewState: PropTypes.function
+  onPSAClick: PropTypes.func,
+  changeViewState: PropTypes.func
 };
 
 export default PSA;

@@ -32,8 +32,8 @@ Site.propTypes = {
   u2: PropTypes.object,
   u3: PropTypes.object,
   units: PropTypes.array,
-  onPSAClick: PropTypes.function,
-  changeViewState: PropTypes.function
+  onPSAClick: PropTypes.func,
+  changeViewState: PropTypes.func
 };
 
 export default Site;

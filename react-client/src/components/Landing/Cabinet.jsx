@@ -33,8 +33,9 @@ const Cabinet = ({ unit, cabinet, onPSAClick, changeViewState }) => {
 
 Cabinet.propTypes = {
   cabinet: PropTypes.object,
-  onPSAClick: PropTypes.function,
-  changeViewState: PropTypes.function
+  onPSAClick: PropTypes.func,
+  changeViewState: PropTypes.func,
+  unit: PropTypes.number
 };
 
 export default Cabinet;

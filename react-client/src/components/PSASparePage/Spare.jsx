@@ -30,8 +30,8 @@ Spare.propTypes = {
   serial: PropTypes.string,
   breakerRep: PropTypes.number,
   wpps: PropTypes.number,
-  onPSAClick: PropTypes.function,
-  changeViewState: PropTypes.function
+  onPSAClick: PropTypes.func,
+  changeViewState: PropTypes.func
 };
 
 export default Spare;

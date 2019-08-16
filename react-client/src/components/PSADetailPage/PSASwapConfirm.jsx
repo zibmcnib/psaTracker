@@ -38,8 +38,8 @@ const PSASwapConfirm = ({
 PSASwapConfirm.propTypes = {
   selectedPSA: PropTypes.object,
   selectedSparePSA: PropTypes.object,
-  changeViewState: PropTypes.function,
-  handlePSASwap: PropTypes.function
+  changeViewState: PropTypes.func,
+  handlePSASwap: PropTypes.func
 };
 
 export default PSASwapConfirm;

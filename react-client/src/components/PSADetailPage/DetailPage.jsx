@@ -3,12 +3,7 @@ import PropTypes from "prop-types";
 import InUnitDetail from "./InUnitDetail.jsx";
 import SpareDetail from "./SpareDetail.jsx";
 
-const DetailPage = ({
-  spares,
-  currentPSA,
-  refreshSpares,
-  changeViewState
-}) => {
+const DetailPage = ({ spares, currentPSA, refreshSpares, changeViewState }) => {
   if (currentPSA.fieldData !== undefined) {
     return (
       <InUnitDetail
@@ -30,9 +25,9 @@ const DetailPage = ({
 
 DetailPage.propTypes = {
   currentPSA: PropTypes.object,
-  onBackClick: PropTypes.function,
-  onSpareStatusClick: PropTypes.function,
-  refreshSpares: PropTypes.function
+  onBackClick: PropTypes.func,
+  onSpareStatusClick: PropTypes.func,
+  refreshSpares: PropTypes.func
 };
 
 export default DetailPage;

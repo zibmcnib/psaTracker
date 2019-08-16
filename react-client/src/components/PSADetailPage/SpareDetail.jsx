@@ -57,8 +57,8 @@ const SpareDetail = ({ currentPSA, refreshSpares, changeViewState }) => {
 
 SpareDetail.propTypes = {
   currentPSA: PropTypes.object,
-  changeViewState: PropTypes.function,
-  refreshSpares: PropTypes.function
+  changeViewState: PropTypes.func,
+  refreshSpares: PropTypes.func
 };
 
 export default SpareDetail;
