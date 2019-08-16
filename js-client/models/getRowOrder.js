@@ -1,4 +1,4 @@
-import locationData from "./locationData";
+import locationData from "./locationDataByDCID";
 
 let getRowOrder = label => {
   let top = [];

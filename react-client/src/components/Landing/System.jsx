@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Cabinet from "./Cabinet.jsx";
 
-const System = ({ unit, cabinets, onClick }) => {
+const System = ({ unit, cabinets, onPSAClick, changeViewState }) => {
   return (
     <div className="system">
       <div className="center">
@@ -12,14 +12,17 @@ const System = ({ unit, cabinets, onClick }) => {
           <span>C01B</span>
           <span>C01C</span>
         </div>
-        {/* cabinets,{" "} */}
         <table className="outerTable">
           <tbody>
-            {/* cabinets,{" "} */}
             <tr>
               {cabinets.map((cabinet, i) => (
                 <td key={i}>
-                  <Cabinet cabinet={cabinet} onClick={onClick} />
+                  <Cabinet
+                    unit={unit}
+                    cabinet={cabinet}
+                    onPSAClick={onPSAClick}
+                    changeViewState={changeViewState}
+                  />
                 </td>
               ))}
             </tr>
@@ -33,7 +36,8 @@ const System = ({ unit, cabinets, onClick }) => {
 System.propTypes = {
   unit: PropTypes.number,
   cabinets: PropTypes.array,
-  onClick: PropTypes.function
+  onPSAClick: PropTypes.function,
+  changeViewState: PropTypes.function
 };
 
 export default System;

@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import parsePSADetails from "../../../js-client/models/parsePSADetails";
+import parsePSADetails from "../../../../js-client/models/parsePSADetails";
+import states from "../states";
 
-const PSA = ({ psa, onClick, subgroup }) => {
-  const currentPSA = parsePSADetails(psa, subgroup);
-
+const PSA = ({ psa, onPSAClick, changeViewState }) => {
+  const currentPSA = parsePSADetails(psa);
   return (
     <div>
       <div
         className={`PSA ${currentPSA.status}`}
-        onClick={() => onClick(psa)}
+        onClick={() => {
+          onPSAClick(psa);
+          changeViewState(states.detailView);
+        }}
         id={currentPSA.location}
       >
         <div className="text subgroup">{currentPSA.subgroup}</div>
@@ -25,7 +28,8 @@ const PSA = ({ psa, onClick, subgroup }) => {
 PSA.propTypes = {
   psa: PropTypes.object,
   subgroup: PropTypes.number,
-  onClick: PropTypes.function
+  onPSAClick: PropTypes.function,
+  changeViewState: PropTypes.function
 };
 
 export default PSA;

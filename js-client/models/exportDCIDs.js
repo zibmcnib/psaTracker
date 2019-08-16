@@ -1,0 +1,44 @@
+const DCIDs = [
+  "JSFNC01A*SG1*IPWSUP",
+  "JSFNC01A*SG10*IPWSUP",
+  "JSFNC01A*SG2*IPWSUP",
+  "JSFNC01A*SG3*IPWSUP",
+  "JSFNC01A*SG4*IPWSUP",
+  "JSFNC01A*SG5*IPWSUP",
+  "JSFNC01A*SG6*IPWSUP",
+  "JSFNC01A*SG7*IPWSUP",
+  "JSFNC01A*SG8*IPWSUP",
+  "JSFNC01A*SG9*IPWSUP",
+  "JSFNC01B*SG11*IPWSUP",
+  "JSFNC01B*SG12*IPWSUP",
+  "JSFNC01B*SG13*IPWSUP",
+  "JSFNC01B*SG14*IPWSUP",
+  "JSFNC01B*SG-CEA1*IPWSUP",
+  "JSFNC01C*SG15*IPWSUP",
+  "JSFNC01C*SG16*IPWSUP",
+  "JSFNC01C*SG17*IPWSUP",
+  "JSFNC01C*SG18*IPWSUP",
+  "JSFNC01C*SG19*IPWSUP",
+  "JSFNC01C*SG20*IPWSUP",
+  "JSFNC01C*SG21*IPWSUP",
+  "JSFNC01C*SG22*IPWSUP"
+];
+
+const unitizeDCIDs = unit => {
+  return DCIDs.map(DCID => {
+    return `${unit}${DCID}`;
+  });
+};
+
+const allDCIDs = () => {
+  let DCID = [];
+  for (let i = 1; i <= 3; i++) {
+    DCID.push(unitizeDCIDs(i));
+  }
+  return DCID;
+};
+
+module.exports = {
+  unitizeDCIDs,
+  allDCIDs
+};

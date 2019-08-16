@@ -10,11 +10,65 @@ app.use(express.static(__dirname + "/../react-client/dist"));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/api/DCIDs", (req, res) => {
+  PSA.getInstalled()
+    .then(DCIDs => {
+      res.send(DCIDs);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
 app.get("/api/psas/:location", (req, res) => {
   const { location } = req.params;
   PSA.find(location)
     .then(psa => {
       res.send(psa);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
+app.post("/api/swappsa", (req, res) => {
+  const { serialOfGood, locationOfBad } = req.body;
+  PSA.installSpareInUnit(serialOfGood, locationOfBad)
+    .then(response => {
+      res.send(response);
+    })
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
+app.post("/api/makespare/:serial", (req, res) => {
+  const { serial } = req.params;
+  PSA.makeSpare(serial)
+    .then(res.sendStatus(202))
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
+app.post("/api/makebroke/:serial", (req, res) => {
+  const { serial } = req.params;
+  PSA.makeBroke(serial)
+    .then(res.sendStatus(202))
+    .catch(e => {
+      console.error(e);
+      res.sendStatus(500);
+    });
+});
+
+app.get("/api/broken", (req, res) => {
+  PSA.getBroken()
+    .then(broken => {
+      res.send(broken);
     })
     .catch(e => {
       console.error(e);

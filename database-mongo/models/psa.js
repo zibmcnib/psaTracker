@@ -30,7 +30,43 @@ const getSpares = async () => {
   return await PSAs.find({ spare: 1 }).exec();
 };
 
+const getBroken = async () => {
+  return await PSAs.find({ spare: 0 })
+    .where("location")
+    .in(["U1 Hot Shop", "U1 HOT SHOP", "WEC", "Simulator", "PVSER", "PVS"])
+    .exec();
+};
+
+const getInstalled = async () => {
+  return await PSAs.find({ location: /JSFNC01/i }).exec();
+};
+
+const installSpareInUnit = async (serialOfGood, locationOfBroke) => {
+  await PSAs.findOneAndUpdate(
+    { location: locationOfBroke },
+    { location: "PVSER", spare: 0 }
+  );
+
+  await PSAs.findOneAndUpdate(
+    { serial: serialOfGood },
+    { location: locationOfBroke, spare: 0 }
+  );
+};
+
+const makeSpare = async serial => {
+  return await PSAs.updateOne({ serial }, { spare: 1 });
+};
+
+const makeBroke = async serial => {
+  return await PSAs.updateOne({ serial }, { spare: 0 });
+};
+
 module.exports = {
   find,
-  getSpares
+  getSpares,
+  getBroken,
+  makeSpare,
+  makeBroke,
+  installSpareInUnit,
+  getInstalled
 };
